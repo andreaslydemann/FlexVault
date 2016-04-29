@@ -7,16 +7,16 @@
 ifeq ($(KERNELRELEASE),)
 
     # Assume the source tree is where the running kernel was built
-    KERNELDIR ?= ~/sources/linux-3.2.6
+    KERNELDIR ?= ~/sources/linux-arm-4.1.1
     # The current directory is passed to sub-makes as argument
     PWD := $(shell pwd)
     TEMP := $(shell echo $(TARGETKERNEL))
 
 modules:
-	$(MAKE) ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi- -C $(KERNELDIR) M=$(PWD) modules
+	$(MAKE) ARCH=arm CROSS_COMPILE=arm-poky-linux-gnueabi- -C $(KERNELDIR) M=$(PWD) modules
 
 modules_install:
-	$(MAKE) ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi- -C $(KERNELDIR) M=$(PWD) modules_install
+	$(MAKE) ARCH=arm CROSS_COMPILE=arm-poky-linux-gnueabi- -C $(KERNELDIR) M=$(PWD) modules_install
 
 temp:
 	echo $(KERNELDIR)
@@ -28,8 +28,8 @@ clean:
 
 else
     # called from kernel build system: just declare what our modules are
-    obj-m += PSoCmod.o hotplug_PSoC_spi_device.o
-    PSoCmod-objs := psoc.o psoc-spi.o
+    obj-m += ads7870mod.o hotplug_ads7870_spi_device.o cmpc.o
+    ads7870mod-objs := ads7870.o ads7870-spi.o
 
 endif
 
