@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     userprivileges.cpp \
     adduserprivileges.cpp \
     loginfaileddialog.cpp \
-    userconfiguration.cpp
+    userconfiguration.cpp \
+    userboxaccess.cpp \
+    boxretrieval.cpp
 
 HEADERS  += \
     usercreationdialog.h \
@@ -30,7 +32,9 @@ HEADERS  += \
     userprivileges.h \
     adduserprivileges.h \
     loginfaileddialog.h \
-    userconfiguration.h
+    userconfiguration.h \
+    userboxaccess.h \
+    boxretrieval.h
 
 FORMS    += userconfiguration.ui \
     usercreationdialog.ui \
@@ -38,4 +42,6 @@ FORMS    += userconfiguration.ui \
     adminmainmenu.ui \
     userprivileges.ui \
     adduserprivileges.ui \
-    loginfaileddialog.ui
+    loginfaileddialog.ui \
+    userboxaccess.ui \
+    boxretrieval.ui
