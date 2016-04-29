@@ -1,0 +1,10 @@
+#!/bin/bash
+echo 0x3 > /sys/class/cplddrv/cpld/spi_route_reg
+echo 0x1 > /sys/class/cplddrv/cpld/ext_serial_if_route_reg
+rmmod leds_gpio
+insmod PSoCmod.ko
+insmod hotplug_PSoC_spi_device.ko
+mknod /dev/PSoC_X_AXIS c 63 0
+mknod /dev/PSoC_Y_AXIS c 63 1
+mknod /dev/PSoC_Z_AXIS c 63 2
+mknod /dev/PSoC_LED_CONTROL c 63 3
