@@ -3,10 +3,9 @@
 #include <linux/spi/spi.h>
 #include <plat/mcspi.h>
 #include <asm/uaccess.h>
-#include <linux/spi/spi.h>
 
-MODULE_AUTHOR("PHM@IHA");
-MODULE_LICENSE("Dual BSD/GPL");
+MODULE_AUTHOR("GROUP9");
+MODULE_LICENSE("GPL");
 
 static struct spi_device *slave_spi_device;
 
@@ -22,7 +21,7 @@ static struct omap2_mcspi_device_config mcspi_config = {
  * Slave Device Config
  */
 static struct spi_board_info slave_spi_board_info = {
-  .modalias	    = "PSoC",
+  .modalias	    = "psoc",
   .bus_num	    = 1,
   .chip_select	    = 0,
   .max_speed_hz	    = 10000000,
