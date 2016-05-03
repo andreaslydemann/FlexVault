@@ -7,17 +7,21 @@
   #include <linux/err.h>
  #include <linux/ctype.h>
 
-#define 
 #define psoc_dev_count 1
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("spi driver"); 
 
 dev_t devno; 
+
+static int psoc_spi_probe(struct spi_device *spi);
+static int psoc_spi_remove(struct spi_device *spi);
+
 struct cdev *my_cdev;
 struct file_operations psoc_fops;
 struct psoc { int revision;};
 static struct spi_device *psoc_spi_device = NULL;
+
 static struct spi_driver psoc_spi_driver = {
   .driver = {
     .name = "psoc",
@@ -25,7 +29,7 @@ static struct spi_driver psoc_spi_driver = {
     .owner = THIS_MODULE,
   },
   .probe = psoc_spi_probe,
-  .remove = psoc_remove,
+  .remove = psoc_spi_remove,
 };
 
 static int psoc_spi_init(void)
@@ -60,6 +64,7 @@ static int psoc_spi_init(void)
     if (err != 0)
     {
         printk(KERN_ALERT "CDEV ADD FAILED!");
+        goto regDev_err;
     }
 
     printk(KERN_ALERT "PSoC initialized\n");
@@ -67,7 +72,7 @@ static int psoc_spi_init(void)
 
     regDev_err:
     unregister_chrdev_region(devno, psoc_dev_count);
-    output_err:
+
     spi_unregister_driver(&psoc_spi_driver); 
     exit_err:
     return err;
@@ -78,8 +83,7 @@ static int psoc_spi_init(void)
 //static int __devinit ads7870_spi_probe(struct spi_device *spi)
 static int psoc_spi_probe(struct spi_device *spi)
 {
-  struct psoc *psocdev;
-  
+ 
   printk(KERN_DEBUG "Probe called: New SPI device: %s using chip select: %i\n",
 	 spi->modalias, spi->chip_select);
   
@@ -101,22 +105,25 @@ static void psoc_spi_exit(void)
 
 }
 
-static int psoc_remove(struct spi_device *spi)
+static int psoc_spi_remove(struct spi_device *spi)
 {
   psoc_spi_device = 0;
   
-  printk (KERN_ALERT "Removing SPI device %s revision %i on chip select %i\n", 
+  printk (KERN_ALERT "Removing SPI device %s on chip select %i\n", 
 	  spi->modalias, spi->chip_select);
 
   return 0;
 }
 
+
+
+
 struct file_operations psoc_fops = {
     .owner = THIS_MODULE,
-    .read = psoc_read,
-    .write = psoc_write,
-    .open = psoc_open,
-    .release = psoc_release
+    //.read = psoc_read,
+    //.write = psoc_write,
+    //.open = psoc_open,
+    //.release = psoc_release
 };
 
 module_init(psoc_spi_init);
