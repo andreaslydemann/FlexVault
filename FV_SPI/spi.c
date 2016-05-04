@@ -25,9 +25,9 @@ static struct spi_device *psoc_spi_device = NULL;
 
 static struct spi_driver psoc_spi_driver = {
   .driver = {
-    .name = "psoc",
-    .bus = &spi_bus_type,
-    .owner = THIS_MODULE,
+    .name = "psoc", //name of our device driver
+    .bus = &spi_bus_type, //the buss of the device driver
+    .owner = THIS_MODULE, //the owner of the module
   },
   .probe = psoc_spi_probe,
   .remove = psoc_spi_remove,
@@ -81,7 +81,7 @@ static int psoc_spi_init(void)
   
 }
 
-//static int __devinit ads7870_spi_probe(struct spi_device *spi)
+//
 static int psoc_spi_probe(struct spi_device *spi)
 {
  
@@ -210,7 +210,7 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
 struct file_operations psoc_fops = {
     .owner = THIS_MODULE,
     //.read = psoc_read,
-    //.write = psoc_write,
+    .write = psoc_write,
     .open = psoc_open,
     .release = psoc_release
 };
