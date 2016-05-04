@@ -8,7 +8,8 @@
  #include <linux/ctype.h>
 
 #define psoc_dev_count 1
-
+#define MAXLEN 8
+#define MODULE_DEBUG 1
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("spi driver"); 
 
@@ -133,33 +134,75 @@ int psoc_release(struct inode *inode, struct file *filep)
 
 size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, loff_t *f_pos)
 {
-  int minor, len, value;
-  char buffer[MAXLEN];
-   
+    int minor, len;
+    char buffer[MAXLEN];
+    u16 value = 0;
+    u16 addr = 0;
+    struct spi_transfer t[1];
+    struct spi_message m;
+    u16 cmd = 0;
     
-  minor = iminor(filep->f_inode);
+    minor = iminor(filep->f_inode);
+    addr = (u8)minor;
+    printk(KERN_ALERT "Writing to PSoC4 [Minor] %i \n", minor);
+        
+    /* Limit copy length to MAXLEN allocated andCopy from user */
+    if (count < MAXLEN)
+        len = count;
+    else
+        len = MAXLEN;
 
-  printk(KERN_ALERT "Writing to PSoC4 [Minor] %i \n", minor);
+    if(copy_from_user(buffer, ubuf, len))
+        return -EFAULT;
+            
+    /* Pad null termination to string */
+    buffer[len] = '\0';   
+
+    if(MODULE_DEBUG)
+        printk("string from user: %s\n", buffer);
+
+    sscanf(buffer,"%hu", &value);
     
-  /* Limit copy length to MAXLEN allocated andCopy from user */
-  len = count < MAXLEN ? count : MAXLEN;
-  if(copy_from_user(buffer, ubuf, len))
-    return -EFAULT;
-	
-  /* Pad null termination to string */
-  buffer[len] = '\0';   
+    if(MODULE_DEBUG)
+        printk("value 0x%x\n", value);
 
-  if(MODULE_DEBUG)
-    printk("string from user: %s\n", buffer);
+    //spi write start
 
-  sscanf(buffer,"%i", &value);
-  if(MODULE_DEBUG)
-    printk("value %i\n", value);
 
-  *f_pos += len;
+    /* Check for valid spi device */
+    if(!psoc_spi_device)
+        return -ENODEV;
 
-  /* return length actually written */
-  return len;
+    
+    /* Create Cmd byte:
+    *
+    * | 0|WR| 8|     ADDR     |
+    *   7  6  5  4  3  2  1  0
+    */ 
+    cmd = (((1<<6) | (addr+1)) << 8) | value; //
+
+    /* Init Message */
+    memset(&t, 0, sizeof(t)); 
+    spi_message_init(&m);
+    m.spi = psoc_spi_device;
+    
+    /* Configure tx/rx buffers */
+    t[0].tx_buf = &cmd;
+    t[0].rx_buf = NULL;
+    t[0].len = 2;
+    spi_message_add_tail(&t[0], &m);
+
+    /* Transmit SPI Data (blocking) */
+    spi_sync(m.spi, &m);
+
+    printk(KERN_INFO "sending %x\n",cmd);
+    
+    //Spi write end
+
+    *f_pos += len;
+
+    /* return length actually written */
+    return len;
 }
 
 
