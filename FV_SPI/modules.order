@@ -1,0 +1,3 @@
+kernel//home/stud/FV/FlexVault/FV_SPI/spi.ko
+kernel//home/stud/FV/FlexVault/FV_SPI/hotplug_psoc_spi_device.ko
+kernel//home/stud/FV/FlexVault/FV_SPI/cmpc.ko

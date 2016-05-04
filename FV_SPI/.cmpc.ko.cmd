@@ -1,0 +1,1 @@
+cmd_/home/stud/FV/FlexVault/FV_SPI/cmpc.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/stud/FV/FlexVault/FV_SPI/cmpc.ko /home/stud/FV/FlexVault/FV_SPI/cmpc.o /home/stud/FV/FlexVault/FV_SPI/cmpc.mod.o

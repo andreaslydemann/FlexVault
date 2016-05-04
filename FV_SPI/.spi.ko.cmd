@@ -1,0 +1,1 @@
+cmd_/home/stud/FV/FlexVault/FV_SPI/spi.ko := arm-poky-linux-gnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/stud/FV/FlexVault/FV_SPI/spi.ko /home/stud/FV/FlexVault/FV_SPI/spi.o /home/stud/FV/FlexVault/FV_SPI/spi.mod.o

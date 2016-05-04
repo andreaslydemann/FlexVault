@@ -1,7 +1,7 @@
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/spi/spi.h>
-#include <plat/mcspi.h>
+#include <linux/platform_data/spi-omap2-mcspi.h>
 #include <asm/uaccess.h>
 
 MODULE_AUTHOR("GROUP9");
@@ -14,7 +14,7 @@ static struct spi_device *slave_spi_device;
  */
 static struct omap2_mcspi_device_config mcspi_config = {
   .turbo_mode	    = 0,
-  .single_channel   = 1,  /* 0: slave, 1: master */
+ // .single_channel   = 0,  /* 0: slave, 1: master */
 };
 
 /* 

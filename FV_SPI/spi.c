@@ -4,7 +4,7 @@
  #include <linux/device.h>
  #include <asm/uaccess.h>
  #include <linux/module.h>
-  #include <linux/err.h>
+ #include <linux/err.h>
  #include <linux/ctype.h>
 
 #define psoc_dev_count 1
@@ -115,6 +115,52 @@ static int psoc_spi_remove(struct spi_device *spi)
   return 0;
 }
 
+int psoc_open(struct inode *inode, struct file *filep)
+
+{
+
+ return 0; 
+
+}
+
+int psoc_release(struct inode *inode, struct file *filep)
+
+{
+
+ return 0;
+
+}
+
+size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, loff_t *f_pos)
+{
+  int minor, len, value;
+  char buffer[MAXLEN];
+   
+    
+  minor = iminor(filep->f_inode);
+
+  printk(KERN_ALERT "Writing to PSoC4 [Minor] %i \n", minor);
+    
+  /* Limit copy length to MAXLEN allocated andCopy from user */
+  len = count < MAXLEN ? count : MAXLEN;
+  if(copy_from_user(buffer, ubuf, len))
+    return -EFAULT;
+	
+  /* Pad null termination to string */
+  buffer[len] = '\0';   
+
+  if(MODULE_DEBUG)
+    printk("string from user: %s\n", buffer);
+
+  sscanf(buffer,"%i", &value);
+  if(MODULE_DEBUG)
+    printk("value %i\n", value);
+
+  *f_pos += len;
+
+  /* return length actually written */
+  return len;
+}
 
 
 
@@ -122,8 +168,8 @@ struct file_operations psoc_fops = {
     .owner = THIS_MODULE,
     //.read = psoc_read,
     //.write = psoc_write,
-    //.open = psoc_open,
-    //.release = psoc_release
+    .open = psoc_open,
+    .release = psoc_release
 };
 
 module_init(psoc_spi_init);
