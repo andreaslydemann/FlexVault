@@ -8,7 +8,7 @@
  #include <linux/ctype.h>
 
 #define psoc_dev_count 1
-#define MAXLEN 8
+#define MAXLEN 20
 #define MODULE_DEBUG 1
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("spi driver"); 
@@ -54,7 +54,7 @@ static int psoc_spi_init(void)
     }
     else
     {
-        printk(KERN_ALERT "The major number is %d", MAJOR(devno));
+        printk(KERN_ALERT "The major number is %d\n", MAJOR(devno));
     }
     
     my_cdev = cdev_alloc(); //Allocate device
@@ -136,8 +136,8 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
 {
     int minor, len;
     char buffer[MAXLEN];
-    u16 value = 0;
-    u16 addr = 0;
+    u8 value = 0;
+    u8 addr = 0;
     struct spi_transfer t[1];
     struct spi_message m;
     u16 cmd = 0;
@@ -146,7 +146,7 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     addr = (u8)minor;
     printk(KERN_ALERT "Writing to PSoC4 [Minor] %i \n", minor);
         
-    /* Limit copy length to MAXLEN allocated andCopy from user */
+    /* Limit copy length to MAXLEN allocated and Copy from user */
     if (count < MAXLEN)
         len = count;
     else
@@ -202,6 +202,9 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     *f_pos += len;
 
     /* return length actually written */
+
+    printk(KERN_ALERT "%s", buffer);
+    
     return len;
 }
 
