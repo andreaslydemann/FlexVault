@@ -8,7 +8,7 @@
  #include <linux/ctype.h>
 
 #define psoc_dev_count 1
-#define MAXLEN 20
+#define MAXLEN 64
 #define MODULE_DEBUG 1
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("spi driver"); 
@@ -136,15 +136,17 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
 {
     int minor, len;
     char buffer[MAXLEN];
-    u8 value = 0;
-    u8 addr = 0;
+    u16 value = 0;
+    //u8 addr = 0;
     struct spi_transfer t[1];
     struct spi_message m;
-    u16 cmd = 0;
+    //u16 cmd = 0;
     
-    minor = iminor(filep->f_inode);
-    addr = (u8)minor;
-    printk(KERN_ALERT "Writing to PSoC4 [Minor] %i \n", minor);
+    //minor = iminor(filep->f_inode);
+    //addr = (u8)minor;
+    
+    //printk(KERN_ALERT "Addr: %hu \n", addr);
+    //printk(KERN_ALERT "Writing to PSoC4 [Minor] %i \n", minor);
         
     /* Limit copy length to MAXLEN allocated and Copy from user */
     if (count < MAXLEN)
@@ -179,7 +181,7 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     * | 0|WR| 8|     ADDR     |
     *   7  6  5  4  3  2  1  0
     */ 
-    cmd = (((1<<6) | (addr+1)) << 8) | value; //
+    //cmd = (((1<<6) | (addr+1)) << 8) | value; //
 
     /* Init Message */
     memset(&t, 0, sizeof(t)); 
@@ -187,7 +189,7 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     m.spi = psoc_spi_device;
     
     /* Configure tx/rx buffers */
-    t[0].tx_buf = &cmd;
+    t[0].tx_buf = &value;
     t[0].rx_buf = NULL;
     t[0].len = 2;
     spi_message_add_tail(&t[0], &m);
@@ -195,7 +197,7 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     /* Transmit SPI Data (blocking) */
     spi_sync(m.spi, &m);
 
-    printk(KERN_INFO "sending %x\n",cmd);
+    //printk(KERN_INFO "sending %x\n",cmd);
     
     //Spi write end
 
