@@ -2,6 +2,8 @@
 #include "ui_login.h"
 #include "adminmainmenu.h"
 #include "loginfaileddialog.h"
+#include "activitylog.h"
+#include "userboxaccess.h"
 
 Login::Login(QWidget *parent, QSqlDatabase*) :
     QWidget(parent),
@@ -24,11 +26,22 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
-    if(dbi.validateLogin(ui->idLineEdit->text(), ui->passwordLineEdit->text()))
+    if(ui->idLineEdit->text() == "Admin" && ui->passwordLineEdit->text() == "Admin")
     {
-    amm = new AdminMainMenu(NULL, fv_db);
-    amm->show(); // change to showFullScreen() for BeagleBone
-    this->hide();
+        log->write("Admin", "Login");
+
+        amm = new AdminMainMenu(NULL, fv_db);
+        amm->show(); // change to showFullScreen() for BeagleBone
+        this->hide();
+    }
+
+    else if(dbi.validateLogin(ui->idLineEdit->text(), ui->passwordLineEdit->text()))
+    {
+        log->write(ui->idLineEdit->text(), "Login");
+
+        uba = new UserBoxAccess(NULL, fv_db, ui->idLineEdit->text());
+        uba->show(); // change to showFullScreen() for BeagleBone
+        this->hide();
     }
 
     else

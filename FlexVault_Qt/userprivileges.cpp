@@ -3,17 +3,17 @@
 #include "adduserprivileges.h"
 #include "userconfiguration.h"
 
-UserPrivileges::UserPrivileges(QWidget *parent, QString userID_, QSqlDatabase* db) :
+UserPrivileges::UserPrivileges(QWidget *parent, QString user_, QSqlDatabase* db) :
     QWidget(parent),
     ui(new Ui::UserPrivileges)
 {
     ui->setupUi(this);
 
-    userID = userID_;
-    ui->userIDTextBrowser->setText(userID_);
+    user = user_;
+    ui->userIDTextBrowser->setText(user_);
     fv_db = db;
 
-    updateUPriv(userID_);
+    updateUPriv();
 }
 
 UserPrivileges::~UserPrivileges()
@@ -21,7 +21,7 @@ UserPrivileges::~UserPrivileges()
     delete ui;
 }
 
-void UserPrivileges::updateUPriv(QString name)
+void UserPrivileges::updateUPriv()
 {
     QListWidgetItem * sdbItems;
 
@@ -37,21 +37,21 @@ void UserPrivileges::updateUPriv(QString name)
 
     //create list
     int arraySize;
-    sdbItems = dbi.getUserPrivileges(name, arraySize);
+    sdbItems = dbi.getUserPrivileges(user, arraySize);
     for (int i = 0; i<arraySize; i++)
         ui->sdbListWidget->addItem(&sdbItems[i]);
 }
 
 void UserPrivileges::on_addButton_clicked()
 {
-    addUP = new AddUserPrivileges(0, userID);
+    addUP = new AddUserPrivileges(0, user);
     this->close();
     addUP->show(); // change to showFullScreen() for BeagleBone
 }
 
 void UserPrivileges::on_deleteButton_clicked()
 {
-    dbi.deletePrivilege(userID, ui->sdbListWidget->currentItem()->text());
+    dbi.deletePrivilege(user, ui->sdbListWidget->currentItem()->text());
     ui->sdbListWidget->takeItem(ui->sdbListWidget->currentRow());
 }
 

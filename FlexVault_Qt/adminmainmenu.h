@@ -5,6 +5,7 @@
 #include "dbinterface.h"
 
 class UserConfiguration;
+class ActivityLog;
 class Login;
 
 namespace Ui {
@@ -24,10 +25,13 @@ private slots:
 
     void on_logOutButton_clicked();
 
+    void on_logButton_clicked();
+
 private:
     Ui::AdminMainMenu *ui;
     UserConfiguration *uconf;
     QSqlDatabase* fv_db;
+    ActivityLog *log;
     Login* login;
 };
 

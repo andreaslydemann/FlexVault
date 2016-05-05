@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
-#include <QSqlDatabase>
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
@@ -12,6 +11,8 @@
 
 class AdminMainMenu;
 class LoginFailedDialog;
+class ActivityLog;
+class UserBoxAccess;
 
 namespace Ui {
 class Login;
@@ -35,6 +36,8 @@ private:
     LoginFailedDialog *lfd;
     QSqlDatabase* fv_db; //flex vault database pointer
     DBInterface dbi;
+    ActivityLog* log;
+    UserBoxAccess* uba;
 
 signals:
     void loginButton_clicked();

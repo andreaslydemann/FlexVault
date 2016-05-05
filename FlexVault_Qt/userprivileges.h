@@ -20,22 +20,20 @@ public:
     ~UserPrivileges();
 
 public slots:
-    void updateUPriv(QString);
+    void updateUPriv();
 
 private slots:
     void on_addButton_clicked();
-
     void on_deleteButton_clicked();
-
     void on_backButton_clicked();
 
 private:
     Ui::UserPrivileges* ui;
     AddUserPrivileges* addUP;
     UserConfiguration* uConf;
-    QString userID;
     DBInterface dbi;
     QSqlDatabase* fv_db;
+    QString user;
 
 signals:
     void addButton_clicked();
