@@ -12,16 +12,22 @@ ActivityLog::ActivityLog(QWidget *parent, QSqlDatabase* db) :
 
     read();
 
-    //connect(ui->userListWidget->verticalScrollBar(), SIGNAL(&QAbstractSlider::valueChanged()),
-    //        this, SLOT(syncronizeScrollBars()));
+    // syncronize scroll bars
+    connect(ui->userListWidget->verticalScrollBar(), SIGNAL(valueChanged(int)),
+            ui->actionListWidget->verticalScrollBar(), SLOT(setValue(int)));
+    connect(ui->userListWidget->verticalScrollBar(), SIGNAL(valueChanged(int)),
+            ui->timeListWidget->verticalScrollBar(), SLOT(setValue(int)));
+    connect(ui->actionListWidget->verticalScrollBar(), SIGNAL(valueChanged(int)),
+            ui->userListWidget->verticalScrollBar(), SLOT(setValue(int)));
+    connect(ui->actionListWidget->verticalScrollBar(), SIGNAL(valueChanged(int)),
+            ui->timeListWidget->verticalScrollBar(), SLOT(setValue(int)));
+    connect(ui->timeListWidget->verticalScrollBar(), SIGNAL(valueChanged(int)),
+            ui->userListWidget->verticalScrollBar(), SLOT(setValue(int)));
+    connect(ui->timeListWidget->verticalScrollBar(), SIGNAL(valueChanged(int)),
+            ui->actionListWidget->verticalScrollBar(), SLOT(setValue(int)));
 
     if(ui->userListWidget->count() != 0)
     ui->userListWidget->takeItem(ui->userListWidget->count() - 1);
-}
-
-void ActivityLog::syncronizeScrollBars()
-{
-    ui->actionListWidget->verticalScrollBar()->setValue(ui->userListWidget->verticalScrollBar()->value());
 }
 
 ActivityLog::~ActivityLog()

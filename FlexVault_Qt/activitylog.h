@@ -28,7 +28,6 @@ public:
 
 private slots:
     void on_backButton_clicked();
-    void syncronizeScrollBars();
 
 private:
     Ui::ActivityLog *ui;
