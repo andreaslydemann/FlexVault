@@ -12,6 +12,7 @@
 class UserCreationDialog;
 class UserPrivileges;
 class AdminMainMenu;
+class ActivityLog;
 
 namespace Ui {
 class UserConfiguration;
@@ -43,6 +44,7 @@ private:
     UserCreationDialog *ucd;
     AdminMainMenu* amm;
     UserPrivileges* upriv;
+    ActivityLog* log;
     DBInterface dbi;
 
 signals:

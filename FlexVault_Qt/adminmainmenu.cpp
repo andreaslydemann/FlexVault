@@ -25,7 +25,7 @@ void AdminMainMenu::on_usersButton_clicked()
 
 void AdminMainMenu::on_logOutButton_clicked()
 {
-    log->write("Admin", "Log_Out");
+    log->write("Admin", "Log_out");
     login = new Login(0, fv_db);
     login->show();
     this->close();

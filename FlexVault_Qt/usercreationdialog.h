@@ -6,6 +6,7 @@
 #include <QPushButton>
 
 class UserConfiguration;
+class ActivityLog;
 
 namespace Ui {
 class UserCreationDialog;
@@ -27,6 +28,7 @@ private slots:
 private:
     Ui::UserCreationDialog *ui;
     QSqlDatabase* fv_db;
+    ActivityLog* log;
     DBInterface dbi;
 
 signals:

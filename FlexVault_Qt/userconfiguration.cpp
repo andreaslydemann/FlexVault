@@ -3,6 +3,7 @@
 #include "usercreationdialog.h"
 #include "userprivileges.h"
 #include "adminmainmenu.h"
+#include "activitylog.h"
 
 UserConfiguration::UserConfiguration(QWidget *parent, QSqlDatabase* db) :
     QWidget(parent),
@@ -11,6 +12,7 @@ UserConfiguration::UserConfiguration(QWidget *parent, QSqlDatabase* db) :
     fv_db = db;
 
     ui->setupUi(this);
+
     updateUConf();
 }
 
@@ -44,6 +46,18 @@ void UserConfiguration::updateUConf()
     userItems = dbi.getColumnAsItems("users", "name", arraySize);
     for (int i = 0; i<arraySize; i++)
         ui->userListWidget->addItem(&userItems[i]);
+
+    if(ui->userListWidget->count() == 0)
+    {
+        ui->privilegesButton->setEnabled(false);
+        ui->deleteButton->setEnabled(false);
+    }
+
+    else
+    {
+        ui->privilegesButton->setEnabled(true);
+        ui->deleteButton->setEnabled(true);
+    }
 }
 
 void UserConfiguration::on_privilegesButton_clicked()
@@ -51,14 +65,25 @@ void UserConfiguration::on_privilegesButton_clicked()
     upriv = new UserPrivileges(NULL, ui->userListWidget->currentItem()->text(), fv_db);
     upriv->show(); // change to showFullScreen() for BeagleBone
     this->close();
-
-    //dbi.createUserPTable(ui->userListWidget->currentItem()->text());
 }
 
 void UserConfiguration::on_deleteButton_clicked()
 {
     dbi.deleteUser(ui->userListWidget->currentItem()->text());
+    log->write(ui->userListWidget->currentItem()->text(), "Deleted");
     ui->userListWidget->takeItem(ui->userListWidget->currentRow());
+
+    if(ui->userListWidget->count() == 0)
+    {
+        ui->privilegesButton->setEnabled(false);
+        ui->deleteButton->setEnabled(false);
+    }
+
+    else
+    {
+        ui->privilegesButton->setEnabled(true);
+        ui->deleteButton->setEnabled(true);
+    }
 }
 
 void UserConfiguration::on_backButton_clicked()

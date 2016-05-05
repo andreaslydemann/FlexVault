@@ -4,6 +4,7 @@
 #include <QWidget>
 
 class UserPrivileges;
+class ActivityLog;
 
 namespace Ui {
 class AddUserPrivileges;
@@ -27,6 +28,7 @@ private slots:
 private:
     Ui::AddUserPrivileges *ui;
     UserPrivileges* uPriv;
+    ActivityLog* log;
     QString userID;
     DBInterface dbi;
 };

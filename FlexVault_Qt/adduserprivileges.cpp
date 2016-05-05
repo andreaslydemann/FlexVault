@@ -1,6 +1,7 @@
 #include "adduserprivileges.h"
 #include "ui_adduserprivileges.h"
 #include "userprivileges.h"
+#include "activitylog.h"
 
 AddUserPrivileges::AddUserPrivileges(QWidget *parent, QString userID_) :
     QWidget(parent),
@@ -41,9 +42,9 @@ void AddUserPrivileges::updateSDBUsage()
 
 void AddUserPrivileges::on_buttonBox_accepted()
 {
-    //dbi.incUserCount(ui->sdbListWidget->currentItem()->text().mid(17,2));
-
     dbi.assignPrivileges(userID, ui->sdbListWidget->currentItem()->text().mid(17,2));
+    QString privilegeAdded = "SDB_" + ui->sdbListWidget->currentItem()->text().mid(17,2) + "_added";
+    log->write(userID, privilegeAdded);
 
     uPriv = new UserPrivileges(0, userID);
     uPriv->show();

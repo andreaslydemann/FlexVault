@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
 
     Login login(0, fv_db);
 
-    QPalette loginPalette = login.palette();
-    loginPalette.setBrush( QPalette::Normal, QPalette::Window, QBrush( Qt::yellow ) );
-    login.setPalette(loginPalette);
+    //QPalette loginPalette = login.palette();
+    //loginPalette.setBrush( QPalette::Normal, QPalette::Window, QBrush( Qt::yellow ) );
+    //login.setPalette(loginPalette);
 
     login.show(); // change to showFullScreen() for BeagleBone
 

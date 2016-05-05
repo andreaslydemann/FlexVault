@@ -33,7 +33,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Add</string>
+    <string>ADD</string>
    </property>
   </widget>
   <widget class="QPushButton" name="deleteButton">
@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Delete</string>
+    <string>DELETE</string>
    </property>
   </widget>
   <widget class="QPushButton" name="retrieveButton">
@@ -59,7 +59,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Retrieve</string>
+    <string>RETRIEVE</string>
    </property>
   </widget>
   <widget class="QPushButton" name="backButton">
@@ -72,7 +72,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Back</string>
+    <string>BACK</string>
    </property>
   </widget>
   <widget class="QLabel" name="sdbLabel">

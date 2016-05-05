@@ -6,6 +6,7 @@
 
 class AddUserPrivileges;
 class UserConfiguration;
+class ActivityLog;
 
 namespace Ui {
 class UserPrivileges;
@@ -31,6 +32,7 @@ private:
     Ui::UserPrivileges* ui;
     AddUserPrivileges* addUP;
     UserConfiguration* uConf;
+    ActivityLog* log;
     DBInterface dbi;
     QSqlDatabase* fv_db;
     QString user;

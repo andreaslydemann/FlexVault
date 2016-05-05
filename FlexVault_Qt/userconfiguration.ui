@@ -33,7 +33,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Back</string>
+    <string>BACK</string>
    </property>
   </widget>
   <widget class="QPushButton" name="privilegesButton">
@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Privileges</string>
+    <string>PRIVILEGES</string>
    </property>
   </widget>
   <widget class="QPushButton" name="deleteButton">
@@ -59,7 +59,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Delete</string>
+    <string>DELETE</string>
    </property>
   </widget>
   <widget class="QPushButton" name="createButton">
@@ -72,7 +72,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Create</string>
+    <string>CREATE</string>
    </property>
   </widget>
   <widget class="QLabel" name="usersLabel">
@@ -85,7 +85,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Users&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;USERS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="ucLabel">
@@ -93,12 +93,12 @@
     <rect>
      <x>50</x>
      <y>30</y>
-     <width>191</width>
+     <width>241</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;User Configuration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;USER CONFIGURATION&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>

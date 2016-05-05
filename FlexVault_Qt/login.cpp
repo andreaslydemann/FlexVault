@@ -26,9 +26,10 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
-    if(ui->idLineEdit->text() == "Admin" && ui->passwordLineEdit->text() == "Admin")
+    if((ui->idLineEdit->text() == "Admin" && ui->passwordLineEdit->text() == "Admin") ||
+            (ui->idLineEdit->text() == "admin" && ui->passwordLineEdit->text() == "admin"))
     {
-        log->write("Admin", "Login");
+        log->write("Admin", "Log_in");
 
         amm = new AdminMainMenu(NULL, fv_db);
         amm->show(); // change to showFullScreen() for BeagleBone
@@ -37,7 +38,7 @@ void Login::on_loginButton_clicked()
 
     else if(dbi.validateLogin(ui->idLineEdit->text(), ui->passwordLineEdit->text()))
     {
-        log->write(ui->idLineEdit->text(), "Login");
+        log->write(ui->idLineEdit->text(), "Log_in");
 
         uba = new UserBoxAccess(NULL, fv_db, ui->idLineEdit->text());
         uba->show(); // change to showFullScreen() for BeagleBone

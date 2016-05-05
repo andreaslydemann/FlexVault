@@ -21,7 +21,7 @@ UserBoxAccess::~UserBoxAccess()
 
 void UserBoxAccess::on_logOutButton_clicked()
 {
-    log->write(currentUser, "Log_Out");
+    log->write(currentUser, "Log_out");
     login = new Login(0, fv_db);
     login->show();
     this->close();
