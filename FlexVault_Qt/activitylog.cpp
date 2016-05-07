@@ -35,7 +35,7 @@ ActivityLog::~ActivityLog()
 
 void ActivityLog::write(QString user, QString activity)
 {
-    QFile log("/home/stud/FV/FlexVault/log.txt");
+    QFile log("/home/stud/FV/FlexVault/FlexVault_Qt/log.txt");
 
     if(log.open(QIODevice::Append | QIODevice::Text))
     {
@@ -54,7 +54,7 @@ void ActivityLog::write(QString user, QString activity)
 
 void ActivityLog::read()
 {
-    QFile log("/home/stud/FV/FlexVault/log.txt");
+    QFile log("/home/stud/FV/FlexVault/FlexVault_Qt/log.txt");
 
     if(log.open(QIODevice::ReadOnly | QIODevice::Text))
     {

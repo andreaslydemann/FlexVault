@@ -13,7 +13,6 @@ Login::Login(QWidget *parent) :
 
     connect(ui->idLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged()));
     connect(ui->passwordLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged()));
-    connect(ui->idLineEdit, SIGNAL(), this, SLOT(lineEdit_textChanged()));
     lineEdit_textChanged();
 
 
