@@ -17,7 +17,7 @@ class AdminMainMenu : public QWidget
     Q_OBJECT
 
 public:
-    explicit AdminMainMenu(QWidget *parent = 0, QSqlDatabase* = NULL);
+    explicit AdminMainMenu(QWidget *parent = 0);
     ~AdminMainMenu();
 
 private slots:
@@ -30,7 +30,6 @@ private slots:
 private:
     Ui::AdminMainMenu *ui;
     UserConfiguration *uconf;
-    QSqlDatabase* fv_db;
     ActivityLog *log;
     Login* login;
 };

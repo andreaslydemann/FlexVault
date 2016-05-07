@@ -17,7 +17,7 @@ class UserPrivileges : public QWidget
     Q_OBJECT
 
 public:
-    explicit UserPrivileges(QWidget *parent = 0, QString = "", QSqlDatabase * = NULL);
+    explicit UserPrivileges(QWidget *parent = 0, QString = "");
     ~UserPrivileges();
 
 public slots:
@@ -31,10 +31,9 @@ private slots:
 private:
     Ui::UserPrivileges* ui;
     AddUserPrivileges* addUP;
-    UserConfiguration* uConf;
+    UserConfiguration* uconf;
     ActivityLog* log;
     DBInterface dbi;
-    QSqlDatabase* fv_db;
     QString user;
 
 signals:

@@ -3,12 +3,12 @@
 #include "activitylog.h"
 #include "login.h"
 
-UserBoxAccess::UserBoxAccess(QWidget *parent, QSqlDatabase* db, QString user) :
+UserBoxAccess::UserBoxAccess(QWidget *parent, QString user) :
     QWidget(parent),
     ui(new Ui::UserBoxAccess)
 {
     currentUser = user;
-    fv_db = db;
+
     ui->setupUi(this);
 
     update();
@@ -22,7 +22,8 @@ UserBoxAccess::~UserBoxAccess()
 void UserBoxAccess::on_logOutButton_clicked()
 {
     log->write(currentUser, "Log_out");
-    login = new Login(0, fv_db);
+    login = new Login();
+    login->move(0, 0);
     login->show();
     this->close();
 }

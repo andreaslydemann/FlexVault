@@ -4,7 +4,7 @@
 #include "userconfiguration.h"
 #include "activitylog.h"
 
-UserPrivileges::UserPrivileges(QWidget *parent, QString user_, QSqlDatabase* db) :
+UserPrivileges::UserPrivileges(QWidget *parent, QString user_) :
     QWidget(parent),
     ui(new Ui::UserPrivileges)
 {
@@ -12,7 +12,6 @@ UserPrivileges::UserPrivileges(QWidget *parent, QString user_, QSqlDatabase* db)
 
     user = user_;
     ui->userIDTextBrowser->setText(user_);
-    fv_db = db;
 
     updateUPriv();
 }
@@ -52,6 +51,7 @@ void UserPrivileges::updateUPriv()
 void UserPrivileges::on_addButton_clicked()
 {
     addUP = new AddUserPrivileges(0, user);
+    addUP->move(0, 0);
     this->close();
     addUP->show(); // change to showFullScreen() for BeagleBone
 }
@@ -69,7 +69,8 @@ void UserPrivileges::on_deleteButton_clicked()
 
 void UserPrivileges::on_backButton_clicked()
 {
-    uConf = new UserConfiguration(0, fv_db);
-    uConf->show();
+    uconf = new UserConfiguration();
+    uconf->move(0, 0);
+    uconf->show();
     this->close();
 }

@@ -5,12 +5,10 @@
 #include "adminmainmenu.h"
 #include "activitylog.h"
 
-UserConfiguration::UserConfiguration(QWidget *parent, QSqlDatabase* db) :
+UserConfiguration::UserConfiguration(QWidget *parent) :
     QWidget(parent),
    ui(new Ui::UserConfiguration)
 {
-    fv_db = db;
-
     ui->setupUi(this);
 
     updateUConf();
@@ -26,6 +24,7 @@ void UserConfiguration::on_createButton_clicked()
     qDebug() << "create button clicked..\n";
 
     ucd = new UserCreationDialog(this);
+    ucd->move(0, 0);
     ucd->show();
 }
 
@@ -62,7 +61,8 @@ void UserConfiguration::updateUConf()
 
 void UserConfiguration::on_privilegesButton_clicked()
 {
-    upriv = new UserPrivileges(NULL, ui->userListWidget->currentItem()->text(), fv_db);
+    upriv = new UserPrivileges(NULL, ui->userListWidget->currentItem()->text());
+    upriv->move(0, 0);
     upriv->show(); // change to showFullScreen() for BeagleBone
     this->close();
 }
@@ -88,7 +88,8 @@ void UserConfiguration::on_deleteButton_clicked()
 
 void UserConfiguration::on_backButton_clicked()
 {
-    amm = new AdminMainMenu(0, fv_db);
+    amm = new AdminMainMenu();
+    amm->move(0, 0);
     amm->show(); // change to showFullScreen() for BeagleBone
     this->close();
 }

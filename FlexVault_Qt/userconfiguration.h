@@ -2,7 +2,6 @@
 #define USERCONFIGURATION_H
 
 #include <QWidget>
-#include <QSqlDatabase>
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
@@ -23,7 +22,7 @@ class UserConfiguration : public QWidget
     Q_OBJECT
 
 public:
-    explicit UserConfiguration(QWidget *parent = 0, QSqlDatabase* db = NULL);
+    explicit UserConfiguration(QWidget *parent = 0);
     ~UserConfiguration();
 
 public slots:
@@ -40,7 +39,6 @@ private slots:
 
 private:
     Ui::UserConfiguration *ui;
-    QSqlDatabase * fv_db;
     UserCreationDialog *ucd;
     AdminMainMenu* amm;
     UserPrivileges* upriv;

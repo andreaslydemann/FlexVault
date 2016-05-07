@@ -2,13 +2,11 @@
 #include "ui_activitylog.h"
 #include "adminmainmenu.h"
 
-ActivityLog::ActivityLog(QWidget *parent, QSqlDatabase* db) :
+ActivityLog::ActivityLog(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ActivityLog)
 {
     ui->setupUi(this);
-
-    fv_db = db;
 
     read();
 
@@ -102,7 +100,8 @@ void ActivityLog::read()
 
 void ActivityLog::on_backButton_clicked()
 {
-    amm = new AdminMainMenu(0, fv_db);
+    amm = new AdminMainMenu();
+    amm->move(0, 0);
     amm->show(); // change to showFullScreen() for BeagleBone
     this->close();
 }

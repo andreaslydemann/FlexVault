@@ -27,7 +27,7 @@ private slots:
 
 private:
     Ui::AddUserPrivileges *ui;
-    UserPrivileges* uPriv;
+    UserPrivileges* upriv;
     ActivityLog* log;
     QString userID;
     DBInterface dbi;

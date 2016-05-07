@@ -4,7 +4,7 @@
 #include "activitylog.h"
 #include "login.h"
 
-AdminMainMenu::AdminMainMenu(QWidget *parent, QSqlDatabase*) :
+AdminMainMenu::AdminMainMenu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AdminMainMenu)
 {
@@ -19,6 +19,7 @@ AdminMainMenu::~AdminMainMenu()
 void AdminMainMenu::on_usersButton_clicked()
 {
     uconf = new UserConfiguration();
+    uconf->move(0, 0);
     uconf->show(); // change to showFullScreen() for BeagleBone
     this->close();
 }
@@ -26,14 +27,17 @@ void AdminMainMenu::on_usersButton_clicked()
 void AdminMainMenu::on_logOutButton_clicked()
 {
     log->write("Admin", "Log_out");
-    login = new Login(0, fv_db);
+    login = new Login(0);
+    login->move(0, 0);
     login->show();
+
     this->close();
 }
 
 void AdminMainMenu::on_logButton_clicked()
 {
     log = new ActivityLog();
+    log->move(0, 0);
     log->show();
     this->close();
 }

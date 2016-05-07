@@ -19,6 +19,7 @@ class UserCreationDialog : public QDialog
 public:
     explicit UserCreationDialog(QWidget *parent = 0);
     ~UserCreationDialog();
+    bool eventFilter(QObject* object, QEvent* event);
 
 private slots:
     void on_buttonBox_accepted();
@@ -27,7 +28,6 @@ private slots:
 
 private:
     Ui::UserCreationDialog *ui;
-    QSqlDatabase* fv_db;
     ActivityLog* log;
     DBInterface dbi;
 

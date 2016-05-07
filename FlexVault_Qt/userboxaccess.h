@@ -2,7 +2,6 @@
 #define USERBOXACCESS_H
 
 #include <QWidget>
-#include <QSqlDatabase>
 #include "dbinterface.h"
 
 class Login;
@@ -17,7 +16,7 @@ class UserBoxAccess : public QWidget
     Q_OBJECT
 
 public:
-    explicit UserBoxAccess(QWidget *parent = 0, QSqlDatabase* db = NULL, QString = "");
+    explicit UserBoxAccess(QWidget *parent = 0, QString = "");
     ~UserBoxAccess();
     void update();
 
@@ -26,7 +25,6 @@ private slots:
 
 private:
     Ui::UserBoxAccess *ui;
-    QSqlDatabase* fv_db;
     ActivityLog* log;
     Login* login;
     QString currentUser;

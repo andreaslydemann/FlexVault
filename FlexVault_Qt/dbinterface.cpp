@@ -212,7 +212,7 @@ void DBInterface::deleteUser(QString name)
     qry.exec("DELETE FROM users WHERE userID = '" + getUserID(name) + "';");
 }
 
-//void DBInterface::resetSafeDB()
+//void DBInterface::resetSDB()
 //{
 //    QSqlQuery qry;
 //    for(int i = 1; i <= 20; i++)

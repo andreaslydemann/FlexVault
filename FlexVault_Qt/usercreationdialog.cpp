@@ -9,6 +9,18 @@ UserCreationDialog::UserCreationDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setAttribute(Qt::WA_TranslucentBackground);
+    setWindowFlags(Qt::FramelessWindowHint);
+
+    QPalette widgetPalette = ui->widget->palette();
+    widgetPalette.setBrush( QPalette::Normal, QPalette::Window, QBrush( Qt::blue) );
+    ui->widget->setPalette(widgetPalette);
+
+    ui->userIDLineEdit->installEventFilter(this);
+    ui->passwordLineEdit->installEventFilter(this);
+
+    ui->virtualKeyboard->hide();
+
     connect(this, SIGNAL(updateUserConfig()), this->parent(), SLOT(updateUConf()));
     connect(ui->userIDLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged()));
     connect(ui->passwordLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged()));
@@ -60,4 +72,14 @@ void UserCreationDialog::lineEdit_textChanged()
             ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
             return;
         }
+}
+
+bool UserCreationDialog::eventFilter(QObject* object, QEvent* event)
+{
+    if((object == ui->userIDLineEdit || object == ui->passwordLineEdit) && event->type() == QEvent::MouseButtonPress) {
+        // bring up your custom edit
+        ui->virtualKeyboard->show();
+        return false; // lets the event continue to the edit
+    }
+    return false;
 }

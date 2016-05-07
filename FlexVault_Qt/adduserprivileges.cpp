@@ -46,14 +46,16 @@ void AddUserPrivileges::on_buttonBox_accepted()
     QString privilegeAdded = "SDB_" + ui->sdbListWidget->currentItem()->text().mid(17,2) + "_added";
     log->write(userID, privilegeAdded);
 
-    uPriv = new UserPrivileges(0, userID);
-    uPriv->show();
+    upriv = new UserPrivileges(0, userID);
+    upriv->move(0, 0);
+    upriv->show();
     this->close();
 }
 
 void AddUserPrivileges::on_buttonBox_rejected()
 {
-    uPriv = new UserPrivileges(0, userID);
-    uPriv->show();
+    upriv = new UserPrivileges(0, userID);
+    upriv->move(0, 0);
+    upriv->show();
     this->close();
 }

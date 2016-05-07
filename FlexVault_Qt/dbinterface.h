@@ -27,7 +27,7 @@ QString getUserID(QString);
 bool checkBoxUsage(QString);
 void deletePrivilege(QString userID, QString sdb);
 void deleteUser(QString userID);
-//void resetSafeDB();
+//void resetSDB();
 };
 
 #endif // DBINTERFACE_H

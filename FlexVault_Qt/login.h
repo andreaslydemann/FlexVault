@@ -2,7 +2,6 @@
 #define LOGIN_H
 
 #include <QWidget>
-#include <QSqlDatabase>
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
@@ -23,10 +22,11 @@ class Login : public QWidget
     Q_OBJECT
 
 public:
-    explicit Login(QWidget *parent = 0, QSqlDatabase* = NULL);
+    explicit Login(QWidget *parent = 0);
     ~Login();
+    bool eventFilter(QObject* object, QEvent* event);
 
-private slots:
+public slots:
     void on_loginButton_clicked();
     void lineEdit_textChanged();
 
@@ -34,7 +34,6 @@ private:
     Ui::Login *ui;
     AdminMainMenu *amm;
     LoginFailedDialog *lfd;
-    QSqlDatabase* fv_db; //flex vault database pointer
     DBInterface dbi;
     ActivityLog* log;
     UserBoxAccess* uba;

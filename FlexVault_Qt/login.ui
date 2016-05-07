@@ -83,8 +83,8 @@
     <rect>
      <x>260</x>
      <y>70</y>
-     <width>361</width>
-     <height>51</height>
+     <width>371</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -96,7 +96,30 @@
     <string>FLEX-VAULT</string>
    </property>
   </widget>
+  <widget class="qvirtualkeyboard" name="virtualKeyboard" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>330</y>
+     <width>801</width>
+     <height>151</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>qvirtualkeyboard</class>
+   <extends>QWidget</extends>
+   <header>qvirtualkeyboard.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>idLineEdit</tabstop>
+  <tabstop>passwordLineEdit</tabstop>
+  <tabstop>loginButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

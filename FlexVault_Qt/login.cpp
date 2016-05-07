@@ -5,7 +5,7 @@
 #include "activitylog.h"
 #include "userboxaccess.h"
 
-Login::Login(QWidget *parent, QSqlDatabase*) :
+Login::Login(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Login)
 {
@@ -13,8 +13,18 @@ Login::Login(QWidget *parent, QSqlDatabase*) :
 
     connect(ui->idLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged()));
     connect(ui->passwordLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged()));
-
+    connect(ui->idLineEdit, SIGNAL(), this, SLOT(lineEdit_textChanged()));
     lineEdit_textChanged();
+
+
+
+    //ui->idLineEdit->focusInEvent();
+    ui->flexVaultLabel->setFocus();
+
+    ui->idLineEdit->installEventFilter(this);
+    ui->passwordLineEdit->installEventFilter(this);
+
+    ui->virtualKeyboard->hide();
 
     //resetSafeDB();
 }
@@ -31,7 +41,8 @@ void Login::on_loginButton_clicked()
     {
         log->write("Admin", "Log_in");
 
-        amm = new AdminMainMenu(NULL, fv_db);
+        amm = new AdminMainMenu(NULL);
+        amm->move(0, 0);
         amm->show(); // change to showFullScreen() for BeagleBone
         this->hide();
     }
@@ -40,7 +51,8 @@ void Login::on_loginButton_clicked()
     {
         log->write(ui->idLineEdit->text(), "Log_in");
 
-        uba = new UserBoxAccess(NULL, fv_db, ui->idLineEdit->text());
+        uba = new UserBoxAccess(NULL, ui->idLineEdit->text());
+        uba->move(0, 0);
         uba->show(); // change to showFullScreen() for BeagleBone
         this->hide();
     }
@@ -60,3 +72,14 @@ void Login::lineEdit_textChanged()
     else
         ui->loginButton->setEnabled(true);
 }
+
+bool Login::eventFilter(QObject* object, QEvent* event)
+{
+    if((object == ui->idLineEdit || object == ui->passwordLineEdit) && event->type() == QEvent::MouseButtonPress) {
+        // bring up your custom edit
+        ui->virtualKeyboard->show();
+        return false; // lets the event continue to the edit
+    }
+    return false;
+}
+

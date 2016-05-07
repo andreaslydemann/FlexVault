@@ -2,8 +2,6 @@
 #include "login.h"
 #include <QApplication>
 #include <QCoreApplication>
-#include <QSqlDatabase>
-#include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
 
@@ -16,12 +14,13 @@ int main(int argc, char *argv[])
     DBInterface dbi;
     dbi.connectToDb(*fv_db);
 
-    Login login(0, fv_db);
+    Login login(0);
 
     //QPalette loginPalette = login.palette();
     //loginPalette.setBrush( QPalette::Normal, QPalette::Window, QBrush( Qt::yellow ) );
     //login.setPalette(loginPalette);
 
+    login.move(0, 0);
     login.show(); // change to showFullScreen() for BeagleBone
 
     return a.exec();

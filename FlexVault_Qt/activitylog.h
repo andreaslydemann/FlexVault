@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QtCore/QCoreApplication>
-#include <QSqlDatabase>
 #include <QtCore>
 #include <QDebug>
 #include <QDateTime>
@@ -21,7 +20,7 @@ class ActivityLog : public QWidget
     Q_OBJECT
 
 public:
-    explicit ActivityLog(QWidget *parent = 0, QSqlDatabase* db = NULL);
+    explicit ActivityLog(QWidget *parent = 0);
     ~ActivityLog();
     void write(QString, QString);
     void read();
@@ -31,7 +30,6 @@ private slots:
 
 private:
     Ui::ActivityLog *ui;
-    QSqlDatabase * fv_db;
     AdminMainMenu* amm;
 };
 
