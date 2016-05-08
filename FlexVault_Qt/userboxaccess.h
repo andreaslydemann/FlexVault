@@ -6,6 +6,7 @@
 
 class Login;
 class ActivityLog;
+class BoxRetrieval;
 
 namespace Ui {
 class UserBoxAccess;
@@ -23,11 +24,14 @@ public:
 private slots:
     void on_logOutButton_clicked();
 
+    void on_retrieveButton_clicked();
+
 private:
     Ui::UserBoxAccess *ui;
     ActivityLog* log;
     Login* login;
-    QString currentUser;
+    QString user;
+    BoxRetrieval* boxret;
     DBInterface dbi;
 };
 

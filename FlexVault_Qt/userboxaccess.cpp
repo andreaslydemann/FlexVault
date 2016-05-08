@@ -1,13 +1,14 @@
 #include "userboxaccess.h"
 #include "ui_userboxaccess.h"
+#include "boxretrieval.h"
 #include "activitylog.h"
 #include "login.h"
 
-UserBoxAccess::UserBoxAccess(QWidget *parent, QString user) :
+UserBoxAccess::UserBoxAccess(QWidget *parent, QString user_) :
     QWidget(parent),
     ui(new Ui::UserBoxAccess)
 {
-    currentUser = user;
+    user = user_;
 
     ui->setupUi(this);
 
@@ -21,7 +22,7 @@ UserBoxAccess::~UserBoxAccess()
 
 void UserBoxAccess::on_logOutButton_clicked()
 {
-    log->write(currentUser, "Log_out");
+    log->write(user, "Log_out");
     login = new Login();
     login->move(0, 0);
     login->show();
@@ -44,7 +45,16 @@ void UserBoxAccess::update()
 
     //create list
     int arraySize;
-    sdbItems = dbi.getUserPrivileges(currentUser, arraySize);
+    sdbItems = dbi.getUserPrivileges(user, arraySize);
     for (int i = 0; i<arraySize; i++)
         ui->boxListWidget->addItem(&sdbItems[i]);
+}
+
+void UserBoxAccess::on_retrieveButton_clicked()
+{
+    boxret = new BoxRetrieval(0, "uba", user);
+    boxret->move(0, 0);
+    boxret->show();
+
+    this->close();
 }

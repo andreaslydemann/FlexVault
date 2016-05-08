@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     userboxaccess.cpp \
     boxretrieval.cpp \
     activitylog.cpp \
-    qvirtualkeyboard.cpp
+    qvirtualkeyboard.cpp \
+    adminboxaccess.cpp
 
 HEADERS  += \
     usercreationdialog.h \
@@ -38,7 +39,8 @@ HEADERS  += \
     userboxaccess.h \
     boxretrieval.h \
     activitylog.h \
-    qvirtualkeyboard.h
+    qvirtualkeyboard.h \
+    adminboxaccess.h
 
 FORMS    += userconfiguration.ui \
     usercreationdialog.ui \
@@ -49,4 +51,5 @@ FORMS    += userconfiguration.ui \
     loginfaileddialog.ui \
     userboxaccess.ui \
     boxretrieval.ui \
-    activitylog.ui
+    activitylog.ui \
+    adminboxaccess.ui

@@ -6,6 +6,7 @@
 
 class AddUserPrivileges;
 class UserConfiguration;
+class BoxRetrieval;
 class ActivityLog;
 
 namespace Ui {
@@ -28,10 +29,13 @@ private slots:
     void on_deleteButton_clicked();
     void on_backButton_clicked();
 
+    void on_retrieveButton_clicked();
+
 private:
     Ui::UserPrivileges* ui;
     AddUserPrivileges* addUP;
     UserConfiguration* uconf;
+    BoxRetrieval* boxret;
     ActivityLog* log;
     DBInterface dbi;
     QString user;

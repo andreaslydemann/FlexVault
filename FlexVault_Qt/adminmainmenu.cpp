@@ -3,6 +3,7 @@
 #include "userconfiguration.h"
 #include "activitylog.h"
 #include "login.h"
+#include "adminboxaccess.h"
 
 AdminMainMenu::AdminMainMenu(QWidget *parent) :
     QWidget(parent),
@@ -39,5 +40,13 @@ void AdminMainMenu::on_logButton_clicked()
     log = new ActivityLog();
     log->move(0, 0);
     log->show();
+    this->close();
+}
+
+void AdminMainMenu::on_sdbButton_clicked()
+{
+    aba = new AdminBoxAccess();
+    aba->move(0, 0);
+    aba->show();
     this->close();
 }

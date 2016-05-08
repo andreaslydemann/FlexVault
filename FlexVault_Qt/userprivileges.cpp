@@ -2,6 +2,7 @@
 #include "ui_userprivileges.h"
 #include "adduserprivileges.h"
 #include "userconfiguration.h"
+#include "boxretrieval.h"
 #include "activitylog.h"
 
 UserPrivileges::UserPrivileges(QWidget *parent, QString user_) :
@@ -72,5 +73,14 @@ void UserPrivileges::on_backButton_clicked()
     uconf = new UserConfiguration();
     uconf->move(0, 0);
     uconf->show();
+    this->close();
+}
+
+void UserPrivileges::on_retrieveButton_clicked()
+{
+    boxret = new BoxRetrieval(0, "upriv", user);
+    boxret->move(0, 0);
+    boxret->show();
+
     this->close();
 }

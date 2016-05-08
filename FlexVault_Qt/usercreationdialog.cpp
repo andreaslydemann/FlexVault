@@ -53,7 +53,8 @@ void UserCreationDialog::lineEdit_textChanged()
 {
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
 
-    if(ui->userIDLineEdit->text().length() == 0 || ui->passwordLineEdit->text().length() == 0)
+    if(ui->userIDLineEdit->text().length() == 0 || ui->passwordLineEdit->text().length() == 0
+            || dbi.checkName(ui->userIDLineEdit->text()))
     {
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
         return;

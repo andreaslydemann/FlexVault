@@ -96,8 +96,6 @@ void DBInterface::disconnectFromDb(QSqlDatabase &fv_db)
 
 void DBInterface::assignPrivileges(QString name, QString sdb)
 {
-    qDebug() << "userid:" << getUserID(name);
-    qDebug() << "sdb:" << sdb;
     QSqlQuery qry;
     qry.exec("insert into privileges(userID, boxID) values('" + getUserID(name) + "','" + sdb + "');");
 
@@ -129,6 +127,21 @@ bool DBInterface::checkBoxUsage(QString sdb)
     for (int i = 0; qry.next(); i++)
     {
         if(sdb == qry.value(0).toString())
+            return true;
+    }
+
+    return false;
+}
+
+bool DBInterface::checkName(QString name)
+{
+    QSqlQuery qry;
+
+    qry.exec("SELECT name FROM users");
+
+    for (int i = 0; qry.next(); i++)
+    {
+        if(name == qry.value(0).toString())
             return true;
     }
 
@@ -169,8 +182,6 @@ QString DBInterface::getUserID(QString name)
     QSqlQuery qry;
     QString userID;
 
-    qDebug() << name;
-
     qry.exec("SELECT userID FROM users WHERE name = '" + name + "';");
 
     if (qry.next())
@@ -178,8 +189,6 @@ QString DBInterface::getUserID(QString name)
     QSqlRecord record = qry.record();
     userID = qry.value(record.indexOf("userID")).toString();
     }
-
-    qDebug() << userID;
 
     return userID;
 }

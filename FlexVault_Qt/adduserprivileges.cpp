@@ -29,7 +29,6 @@ void AddUserPrivileges::updateSDBUsage()
 
     for(int i = 1; i <= 20; i++)
     {
-        qDebug() << dbi.checkBoxUsage(QString::number(i));
         if(dbi.checkBoxUsage(QString::number(i)))
             ui->sdbListWidget->item(a)->setForeground(QBrush(QColor(Qt::red)));
 

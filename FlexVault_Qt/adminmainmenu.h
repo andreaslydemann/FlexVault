@@ -5,6 +5,7 @@
 #include "dbinterface.h"
 
 class UserConfiguration;
+class AdminBoxAccess;
 class ActivityLog;
 class Login;
 
@@ -22,14 +23,14 @@ public:
 
 private slots:
     void on_usersButton_clicked();
-
     void on_logOutButton_clicked();
-
     void on_logButton_clicked();
+    void on_sdbButton_clicked();
 
 private:
     Ui::AdminMainMenu *ui;
     UserConfiguration *uconf;
+    AdminBoxAccess* aba;
     ActivityLog *log;
     Login* login;
 };

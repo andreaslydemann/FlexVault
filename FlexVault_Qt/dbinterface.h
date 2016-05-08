@@ -25,6 +25,7 @@ QString getUserID(QString);
 //void incUserCount(QString);
 //void decUserCount(QString);
 bool checkBoxUsage(QString);
+bool checkName(QString);
 void deletePrivilege(QString userID, QString sdb);
 void deleteUser(QString userID);
 //void resetSDB();

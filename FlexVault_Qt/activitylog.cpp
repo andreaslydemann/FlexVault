@@ -47,8 +47,6 @@ void ActivityLog::write(QString user, QString activity)
 
         log.flush();
         log.close();
-
-        qDebug() << "Activity written to log";
     }
 }
 
