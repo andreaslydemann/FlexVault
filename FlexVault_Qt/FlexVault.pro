@@ -40,7 +40,8 @@ HEADERS  += \
     boxretrieval.h \
     activitylog.h \
     qvirtualkeyboard.h \
-    adminboxaccess.h
+    adminboxaccess.h \
+    inactivityfilter.h
 
 FORMS    += userconfiguration.ui \
     usercreationdialog.ui \

@@ -1,4 +1,5 @@
 #include "dbinterface.h"
+#include "inactivityfilter.h"
 #include "login.h"
 #include <QApplication>
 #include <QCoreApplication>
@@ -8,6 +9,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    InactivityFilter filter;
+    a.installEventFilter(&filter);
 
     QSqlDatabase* fv_db = new QSqlDatabase; // allocate QSqlDatabase object
     DBInterface dbi;
@@ -19,3 +23,4 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+

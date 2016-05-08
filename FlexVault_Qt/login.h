@@ -2,10 +2,6 @@
 #define LOGIN_H
 
 #include <QWidget>
-#include <QtSql>
-#include <QDebug>
-#include <QFileInfo>
-
 #include "dbinterface.h"
 
 class AdminMainMenu;
