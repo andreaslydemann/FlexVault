@@ -84,7 +84,7 @@ static int psoc_spi_probe(struct spi_device *spi)
   printk(KERN_DEBUG "Probe called: New SPI device: %s using chip select: %i\n",
 	 spi->modalias, spi->chip_select);
   
-  spi->bits_per_word = 8;  
+  spi->bits_per_word = 16;  
   spi_setup(spi);
 
   /* In this case we assume just one device */ 
@@ -125,19 +125,11 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
 {
     int minor, len;
     char buffer[MAXLEN];
-    u16 value = 0;
-    //u8 addr = 0;
+    u16 value = 0; 
     struct spi_transfer t[1];
     struct spi_message m;
     //u16 cmd = 0;
     
-    //minor = iminor(filep->f_inode);
-    //addr = (u8)minor;
-    
-    //printk(KERN_ALERT "Addr: %hu \n", addr);
-    //printk(KERN_ALERT "Writing to PSoC4 [Minor] %i \n", minor);
-        
-    /* Limit copy length to MAXLEN allocated and Copy from user */
     if (count < MAXLEN)
         len = count;
     else
@@ -152,25 +144,14 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     if(MODULE_DEBUG)
         printk("string from user: %s", buffer);
 
-    sscanf(buffer,"%x", &value); //convert the buffer string to a short int
+    sscanf(buffer,"%hu", &value); //convert the buffer string to short int
     
     if(MODULE_DEBUG)
         printk("value as hex: 0x%x \n", value);
 
-    //spi write start
-
-
     /* Check for valid spi device */
     if(!psoc_spi_device)
         return -ENODEV;
-
-    
-    /* Create Cmd byte:
-    *
-    * | 0|WR| 8|     ADDR     |
-    *   7  6  5  4  3  2  1  0
-    */ 
-    //cmd = (((1<<6) | (addr+1)) << 8) | value; //
 
     /* Init Message */
     memset(&t, 0, sizeof(t)); 
@@ -186,15 +167,7 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     /* Transmit SPI Data (blocking) */
     spi_sync(m.spi, &m);
 
-    //printk(KERN_INFO "sending %x\n",cmd);
-    
-    //Spi write end
-
     *f_pos += len;
-
-    /* return length actually written */
-
-    printk(KERN_ALERT "%s", buffer);
     
     return len;
 }

@@ -28,8 +28,10 @@ __attribute__((section("__versions"))) = {
 	{ 0x29537c9e, __VMLINUX_SYMBOL_STR(alloc_chrdev_region) },
 	{ 0x6a204038, __VMLINUX_SYMBOL_STR(spi_register_driver) },
 	{ 0xad71faa8, __VMLINUX_SYMBOL_STR(spi_setup) },
-	{ 0x9d2a998f, __VMLINUX_SYMBOL_STR(spi_sync) },
+	{ 0x67c2fa54, __VMLINUX_SYMBOL_STR(__copy_to_user) },
+	{ 0x91715312, __VMLINUX_SYMBOL_STR(sprintf) },
 	{ 0xfbc74f64, __VMLINUX_SYMBOL_STR(__copy_from_user) },
+	{ 0x9d2a998f, __VMLINUX_SYMBOL_STR(spi_sync) },
 	{ 0xfa2a45e, __VMLINUX_SYMBOL_STR(__memzero) },
 	{ 0x20c55ae0, __VMLINUX_SYMBOL_STR(sscanf) },
 	{ 0x27e1a049, __VMLINUX_SYMBOL_STR(printk) },
@@ -42,4 +44,4 @@ __attribute__((section(".modinfo"))) =
 "depends=";
 
 
-MODULE_INFO(srcversion, "1A007782C024732CEB8A2A2");
+MODULE_INFO(srcversion, "C7A9A6CDE2920FD033E98CA");
