@@ -1,5 +1,6 @@
 #ifndef ADDUSERPRIVILEGES_H
 #define ADDUSERPRIVILEGES_H
+
 #include "dbinterface.h"
 #include <QWidget>
 

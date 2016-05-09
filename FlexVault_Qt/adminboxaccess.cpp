@@ -8,6 +8,9 @@ AdminBoxAccess::AdminBoxAccess(QWidget *parent) :
     ui(new Ui::AdminBoxAccess)
 {
     ui->setupUi(this);
+
+    if(ui->boxListWidget->count() == 0)
+        ui->retrieveButton->setEnabled(false);
 }
 
 AdminBoxAccess::~AdminBoxAccess()
@@ -17,7 +20,7 @@ AdminBoxAccess::~AdminBoxAccess()
 
 void AdminBoxAccess::on_retrieveButton_clicked()
 {
-    boxret = new BoxRetrieval(0, "aba", NULL);
+    boxret = new BoxRetrieval(0, "aba", "Admin", ui->boxListWidget->currentItem()->text());
     boxret->move(0, 0);
     boxret->show();
 

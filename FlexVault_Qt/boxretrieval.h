@@ -6,6 +6,8 @@
 class UserPrivileges;
 class AdminBoxAccess;
 class UserBoxAccess;
+class ActivityLog;
+class WeightWarningDialog;
 
 namespace Ui {
 class BoxRetrieval;
@@ -16,7 +18,7 @@ class BoxRetrieval : public QWidget
     Q_OBJECT
 
 public:
-    explicit BoxRetrieval(QWidget *parent = 0, QString = NULL, QString = NULL);
+    explicit BoxRetrieval(QWidget *parent = 0, QString = NULL, QString = NULL, QString = NULL);
     ~BoxRetrieval();
 
 private slots:
@@ -27,8 +29,11 @@ private:
     AdminBoxAccess* aba;
     UserBoxAccess* uba;
     UserPrivileges* upriv;
+    ActivityLog* log;
     QString prevPage;
     QString user;
+    QString box;
+    WeightWarningDialog* wwd;
 };
 
 #endif // BOXRETRIEVAL_H

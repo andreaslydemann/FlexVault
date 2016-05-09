@@ -48,11 +48,14 @@ void UserBoxAccess::update()
     sdbItems = dbi.getUserPrivileges(user, arraySize);
     for (int i = 0; i<arraySize; i++)
         ui->boxListWidget->addItem(&sdbItems[i]);
+
+    if(ui->boxListWidget->count() == 0)
+        ui->retrieveButton->setEnabled(false);
 }
 
 void UserBoxAccess::on_retrieveButton_clicked()
 {
-    boxret = new BoxRetrieval(0, "uba", user);
+    boxret = new BoxRetrieval(0, "uba", user, ui->boxListWidget->currentItem()->text());
     boxret->move(0, 0);
     boxret->show();
 

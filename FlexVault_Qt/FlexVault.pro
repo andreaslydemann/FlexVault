@@ -25,7 +25,9 @@ SOURCES += main.cpp\
     boxretrieval.cpp \
     activitylog.cpp \
     qvirtualkeyboard.cpp \
-    adminboxaccess.cpp
+    adminboxaccess.cpp \
+    inactivityfilter.cpp \
+    weightwarningdialog.cpp
 
 HEADERS  += \
     usercreationdialog.h \
@@ -41,7 +43,8 @@ HEADERS  += \
     activitylog.h \
     qvirtualkeyboard.h \
     adminboxaccess.h \
-    inactivityfilter.h
+    inactivityfilter.h \
+    weightwarningdialog.h
 
 FORMS    += userconfiguration.ui \
     usercreationdialog.ui \
@@ -53,4 +56,5 @@ FORMS    += userconfiguration.ui \
     userboxaccess.ui \
     boxretrieval.ui \
     activitylog.ui \
-    adminboxaccess.ui
+    adminboxaccess.ui \
+    weightwarningdialog.ui

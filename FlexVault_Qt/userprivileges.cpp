@@ -43,10 +43,16 @@ void UserPrivileges::updateUPriv()
         ui->sdbListWidget->addItem(&sdbItems[i]);
 
     if(ui->sdbListWidget->count() == 0)
+    {
         ui->deleteButton->setEnabled(false);
+        ui->retrieveButton->setEnabled(false);
+    }
 
     else
+    {
         ui->deleteButton->setEnabled(true);
+        ui->retrieveButton->setEnabled(true);
+    }
 }
 
 void UserPrivileges::on_addButton_clicked()
@@ -65,7 +71,10 @@ void UserPrivileges::on_deleteButton_clicked()
     ui->sdbListWidget->takeItem(ui->sdbListWidget->currentRow());
 
     if(ui->sdbListWidget->count() == 0)
+    {
         ui->deleteButton->setEnabled(false);
+        ui->retrieveButton->setEnabled(false);
+    }
 }
 
 void UserPrivileges::on_backButton_clicked()
@@ -78,7 +87,7 @@ void UserPrivileges::on_backButton_clicked()
 
 void UserPrivileges::on_retrieveButton_clicked()
 {
-    boxret = new BoxRetrieval(0, "upriv", user);
+    boxret = new BoxRetrieval(0, "upriv", user, ui->sdbListWidget->currentItem()->text());
     boxret->move(0, 0);
     boxret->show();
 

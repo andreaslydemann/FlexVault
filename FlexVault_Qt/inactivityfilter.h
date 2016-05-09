@@ -14,38 +14,17 @@ class InactivityFilter : public QObject
     Q_OBJECT
 
 public:
-    explicit InactivityFilter()
-    {
-        timer = new QTimer(this);
-        timer->setSingleShot(true);
-
-        connect(timer, SIGNAL(timeout()), this, SLOT(showLogin()));
-        timer->start(12000);
-    }
-
-    bool eventFilter(QObject *obj, QEvent *ev)
-    {
-      if(ev->type() == QEvent::KeyPress ||
-         ev->type() == QEvent::MouseMove)
-           resetTimer();
-
-      return QObject::eventFilter(obj, ev);
-    }
-
-    void resetTimer()
-    {
-        timer->start(12000);
-    }
+    explicit InactivityFilter();
+    bool eventFilter(QObject *obj, QEvent *ev);
+    static void resetTimer();
+    static void stopTimer();
 
 public slots:
-    void showLogin()
-    {
-        qApp->quit();
-        QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
-    }
+    static void showLogin();
 
 private:
-QTimer *timer;
+static QTimer *timer;
+static bool timerStopped;
 Login* login;
 };
 

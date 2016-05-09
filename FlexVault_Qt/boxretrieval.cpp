@@ -3,14 +3,21 @@
 #include "userprivileges.h"
 #include "adminboxaccess.h"
 #include "userboxaccess.h"
+#include "inactivityfilter.h"
+#include "activitylog.h"
+#include "weightwarningdialog.h"
 
-BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_) :
+BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QString box_) :
     QWidget(parent),
     ui(new Ui::BoxRetrieval)
 {
+    ui->setupUi(this);
+
     prevPage = prevPage_;
     user = user_;
-    ui->setupUi(this);
+    box = box_;
+
+    InactivityFilter::stopTimer();
 }
 
 BoxRetrieval::~BoxRetrieval()
@@ -20,6 +27,9 @@ BoxRetrieval::~BoxRetrieval()
 
 void BoxRetrieval::on_returnButton_clicked()
 {
+    InactivityFilter::resetTimer();
+    log->write(user, "SDB_" + box + "_retrieved");
+
     if(prevPage == "uba")
     {
         uba = new UserBoxAccess(0, user);

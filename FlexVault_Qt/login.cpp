@@ -4,6 +4,7 @@
 #include "loginfaileddialog.h"
 #include "activitylog.h"
 #include "userboxaccess.h"
+#include "inactivityfilter.h"
 
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -15,8 +16,6 @@ Login::Login(QWidget *parent) :
     connect(ui->passwordLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged()));
     lineEdit_textChanged();
 
-
-
     //ui->idLineEdit->focusInEvent();
     ui->flexVaultLabel->setFocus();
 
@@ -25,7 +24,7 @@ Login::Login(QWidget *parent) :
 
     ui->virtualKeyboard->hide();
 
-    //resetSafeDB();
+    InactivityFilter::stopTimer();
 }
 
 Login::~Login()
@@ -38,6 +37,8 @@ void Login::on_loginButton_clicked()
     if((ui->idLineEdit->text() == "Admin" && ui->passwordLineEdit->text() == "Admin") ||
             (ui->idLineEdit->text() == "admin" && ui->passwordLineEdit->text() == "admin"))
     {
+        InactivityFilter::resetTimer();
+
         log->write("Admin", "Log_in");
 
         amm = new AdminMainMenu(NULL);
@@ -48,6 +49,8 @@ void Login::on_loginButton_clicked()
 
     else if(dbi.validateLogin(ui->idLineEdit->text(), ui->passwordLineEdit->text()))
     {
+        InactivityFilter::resetTimer();
+
         log->write(ui->idLineEdit->text(), "Log_in");
 
         uba = new UserBoxAccess(NULL, ui->idLineEdit->text());

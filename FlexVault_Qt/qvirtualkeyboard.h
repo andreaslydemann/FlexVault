@@ -42,7 +42,6 @@ class qvirtualkeyboard : public QWidget
         void displayNumber(void);
         void displaySpecialChar(void);
 
-        void buttonC1Function(void);
         void buttonC2Function(void);
         void buttonC3Function(void);
         void buttonC4Function(void);
@@ -100,8 +99,7 @@ class qvirtualkeyboard : public QWidget
         QWidget *verticalLayoutWidget2;
         QHBoxLayout *horizontalLayout;
 
-        int AlphabetLayout; // AZERTY = 1 ou QWERTY = 0
-
+        int AlphabetLayout;
 };
 
 #endif // VIRTUALKEYBOARD_H_INCLUDED

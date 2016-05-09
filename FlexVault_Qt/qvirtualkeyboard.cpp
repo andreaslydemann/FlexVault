@@ -74,7 +74,6 @@ qvirtualkeyboard::qvirtualkeyboard(QWidget*parent) : QWidget(parent)
 
 
 // Connexion des boutons de contrôle C1 à C6
-    connect(buttonC1, SIGNAL(clicked()), this, SLOT(buttonC1Function()));
     connect(buttonC2, SIGNAL(clicked()), this, SLOT(buttonC2Function()));
     connect(buttonC3, SIGNAL(clicked()), this, SLOT(buttonC3Function()));
     connect(buttonC4, SIGNAL(clicked()), this, SLOT(buttonC4Function()));
@@ -92,9 +91,6 @@ qvirtualkeyboard::qvirtualkeyboard(QWidget*parent) : QWidget(parent)
 
 void qvirtualkeyboard::createButtons(void)
 {
-// Layout par défaut : AZERTY
-    AlphabetLayout = 1;
-
 // Taille par défaut
     kw = defaultWidth;
     kh = defaultHeight;
@@ -203,9 +199,8 @@ void qvirtualkeyboard::createButtons(void)
 
 
 // initialise les boutons de contrôle
-    buttonC3->setText(QString(".?123"));
-    buttonC1->setText(QString(" "));
-    buttonC1->setIcon(QIcon(":/icon/arrow.png"));
+    buttonC3->setText(QString("123"));
+    buttonC1->setText(QString("^"));
     buttonC1->setCheckable(true);
 
 
@@ -240,17 +235,6 @@ void qvirtualkeyboard::createButtons(void)
 
 void qvirtualkeyboard::displayAlphabet(void) // Affiche l'alphabet
 {
-    if(!AlphabetLayout)  // Si AlphabetLayout == 0 : Mode AZERTY
-    {
-        unsigned char azerty[] = {'A', 'Z', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'Q', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'W', 'X', 'C', 'V', 'B', 'N'};
-
-        for(int i=0; i < 26; i++)
-        {
-            button[i]->setText(QChar::fromAscii(azerty[i]));
-        }
-    }
-    else  // Sinon AlphabetLayout Mode QWERTY
-    {
         unsigned char qwerty[] = {'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'};
         buttonC1->setText(QString("^"));
         buttonC2->setText("<-");
@@ -260,12 +244,7 @@ void qvirtualkeyboard::displayAlphabet(void) // Affiche l'alphabet
 
 
         for(int i=0; i < 26; i++)
-        {
             button[i]->setText(QChar::fromAscii(qwerty[i]));
-        }
-    }
-
-    return;
 }
 
 
@@ -278,9 +257,9 @@ void qvirtualkeyboard::displayNumber(void) // Affiche les nombres
         horizontalLayout_2->addWidget(button[19]);
     }
 
-    unsigned short int number[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '/', ':', ';', '(', ')', 0x20ac, '&', '@', '"', '.', ',', '?', '!', 39, 0x00B2};
+    unsigned short int number[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
-    for(int i=0; i < 26; i++)
+    for(int i=0; i < 10; i++)
     {
         if(number[i] != '&')
         {
@@ -311,30 +290,6 @@ void qvirtualkeyboard::displaySpecialChar(void) // Affiche les caractères spéc
 
 
 
-void qvirtualkeyboard::buttonC1Function(void) // Contrôle le bouton C1
-{
-    if(buttonC3->text() == QString("ABC"))
-    {
-        if(buttonC1->text() == QString("#+="))
-        {
-            buttonC1->setText(QString("123"));
-            buttonC1->setCheckable(false);
-            displaySpecialChar();
-        }
-        else
-        {
-            buttonC1->setText(QString("#+="));
-            buttonC1->setIcon(QIcon(""));
-            buttonC1->setCheckable(false);
-            displayNumber();
-        }
-    }
-
-    return;
-}
-
-
-
 void qvirtualkeyboard::buttonC2Function(void) // Contrôle le bouton C2 - BackSpace
 {
     QApplication::sendEvent(parentWidget->focusWidget(), new QKeyEvent(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier, QString(QChar(0x0008))));
@@ -345,20 +300,14 @@ void qvirtualkeyboard::buttonC2Function(void) // Contrôle le bouton C2 - BackSp
 
 void qvirtualkeyboard::buttonC3Function(void) // Contrôle le bouton C3
 {
-    if(buttonC3->text() == QString(".?123"))
+    if(buttonC3->text() == QString("123"))
     {
         buttonC3->setText(QString("ABC"));
-        buttonC1->setText(QString("#+="));
-        buttonC1->setIcon(QIcon(""));
-        buttonC1->setCheckable(false);
         displayNumber();
     }
     else
     {
-        buttonC3->setText(QString(".?123"));
-        buttonC1->setText(QString(" "));
-        buttonC1->setIcon(QIcon(":/icon/arrow.png"));
-        buttonC1->setCheckable(true);
+        buttonC3->setText(QString("123"));
         displayAlphabet();
     }
 
@@ -395,7 +344,7 @@ void qvirtualkeyboard::sendChar(int indexOfCharToSend) // Envoit le caractère a
 
     QChar charToSend(button[indexOfCharToSend]->text().at(0));
 
-    if(!buttonC1->isChecked() && buttonC3->text() == QString(".?123"))
+    if(!buttonC1->isChecked())
     {
         QApplication::sendEvent(parentWidget->focusWidget(), new QKeyEvent(QEvent::KeyPress, charToSend.toLower().unicode(), Qt::NoModifier, QString(charToSend.toLower())));
     }
@@ -424,7 +373,7 @@ void qvirtualkeyboard::buttonPressed(int indexOfCharToSend) // Affiche l'étique
 
     lastPressedKey = indexOfCharToSend;     // On stocke le numéro du bouton appuyé dans une variable
 
-    if(!buttonC1->isChecked() && buttonC3->text() == QString(".?123"))
+    if(!buttonC1->isChecked())
     {
         labelDisplayChar->setText(QString(button[indexOfCharToSend]->text()).toLower());
     }
@@ -588,7 +537,7 @@ void qvirtualkeyboard::setKeyboardLayout(int layout)
 {
     AlphabetLayout = layout;
 
-    if(buttonC3->text() == QString(".?123"))    // Si l'alphabet est affiché, on met à jour le layout
+    if(buttonC3->text() == QString("123"))    // Si l'alphabet est affiché, on met à jour le layout
     {
         displayAlphabet();
     }
