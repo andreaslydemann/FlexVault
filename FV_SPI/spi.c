@@ -161,12 +161,12 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     buffer[len] = '\0';   
 
     if(MODULE_DEBUG)
-        printk("string from user: %s\n", buffer);
+        printk("string from user: %s", buffer);
 
-    sscanf(buffer,"%hu", &value);
+    sscanf(buffer,"%x", &value); //convert the buffer string to a short int
     
     if(MODULE_DEBUG)
-        printk("value 0x%x\n", value);
+        printk("value as hex: 0x%x \n", value);
 
     //spi write start
 
