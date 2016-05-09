@@ -1,0 +1,7 @@
+- lave interrupt linjen og implementere den i gui, lav prioritet
+- deaktiver automatisk nedlukning efter 2 min på siderne box retrieval og login.
+- deaktiver specialtegn knappen på onscreen keyboardet.
+- vncserver skal installeres på devkit så vi kan bruge remote desktop.
+- lave i2c
+- lave gui-spi interface
+- dokumentation for for hele, evt. finde fin opdeling.
