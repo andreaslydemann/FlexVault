@@ -45,7 +45,6 @@ static int psoc_spi_init(void)
         goto exit_err;
     }
   
-  
     err = alloc_chrdev_region(&devno, 0, psoc_dev_count, "PSoC4"); //Register device
     if (err != 0)
     {
@@ -77,14 +76,11 @@ static int psoc_spi_init(void)
     spi_unregister_driver(&psoc_spi_driver); 
     exit_err:
     return err;
-  
-  
 }
 
 //
 static int psoc_spi_probe(struct spi_device *spi)
 {
- 
   printk(KERN_DEBUG "Probe called: New SPI device: %s using chip select: %i\n",
 	 spi->modalias, spi->chip_select);
   
@@ -103,7 +99,6 @@ static void psoc_spi_exit(void)
     cdev_del(my_cdev); // Delete cdev
     unregister_chrdev_region(devno, psoc_dev_count); // Unregister device
     spi_unregister_driver(&psoc_spi_driver); 
-
 }
 
 static int psoc_spi_remove(struct spi_device *spi)
@@ -117,19 +112,13 @@ static int psoc_spi_remove(struct spi_device *spi)
 }
 
 int psoc_open(struct inode *inode, struct file *filep)
-
 {
-
  return 0; 
-
 }
 
 int psoc_release(struct inode *inode, struct file *filep)
-
 {
-
  return 0;
-
 }
 
 size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, loff_t *f_pos)
@@ -210,11 +199,51 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     return len;
 }
 
+ssize_t psoc_read(struct file *filep, char __user *ubuf, size_t count, loff_t *f_pos)
+{
+    int len;
+    char buffer[MAXLEN];
+    u16 value = 0;
+    
+    struct spi_transfer t[1];
+    struct spi_message m;
+    
+    if(!psoc_spi_device)
+        return -ENODEV;
+    
+    /* Init Message */
+    memset(&t, 0, sizeof(t)); 
+    spi_message_init(&m);
+    m.spi = psoc_spi_device;
+    
+    t[0].delay_usecs = 60;
+    t[0].tx_buf = NULL;
+    t[0].rx_buf = &value;
+    t[0].len = 2;
+    spi_message_add_tail(&t[0], &m);
+    
+    spi_sync(m.spi, &m);
 
+    if(MODULE_DEBUG)  
+        printk(KERN_DEBUG "Reading from psoc: 0x%hx\n", value);
+    
+    len = sprintf(buffer, "%hu", value);
+        len++;
+        
+    if(MODULE_DEBUG)
+        printk(KERN_DEBUG "Convert from psoc: %s \n", buffer);
+    
+    if(copy_to_user(ubuf, buffer, len))
+        return -EFAULT;
+    
+    *f_pos += len;
+    
+    return len;
+}
 
 struct file_operations psoc_fops = {
     .owner = THIS_MODULE,
-    //.read = psoc_read,
+    .read = psoc_read,
     .write = psoc_write,
     .open = psoc_open,
     .release = psoc_release
