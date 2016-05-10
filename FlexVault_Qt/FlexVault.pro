@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     qvirtualkeyboard.cpp \
     adminboxaccess.cpp \
     inactivityfilter.cpp \
-    weightwarningdialog.cpp
+    weightwarningdialog.cpp \
+    spiinterface.cpp
 
 HEADERS  += \
     usercreationdialog.h \
@@ -44,7 +45,8 @@ HEADERS  += \
     qvirtualkeyboard.h \
     adminboxaccess.h \
     inactivityfilter.h \
-    weightwarningdialog.h
+    weightwarningdialog.h \
+    spiinterface.h
 
 FORMS    += userconfiguration.ui \
     usercreationdialog.ui \
