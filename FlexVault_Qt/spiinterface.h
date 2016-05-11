@@ -2,17 +2,16 @@
 #define SPIINTERFACE_H
 
 #include <QString>
-#include <QProcess>
+#include <QDebug>
+#include <cstdio>
+#include <fcntl.h>
+#include <unistd.h>
 
 class SPIInterface
 {
 public:
     SPIInterface();
-    void write(QString, QString);
-
-signals:
-
-public slots:
+    int writeToFV(QString*, unsigned int*);
 };
 
 #endif // SPIINTERFACE_H

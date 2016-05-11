@@ -20,7 +20,7 @@ AdminBoxAccess::~AdminBoxAccess()
 
 void AdminBoxAccess::on_retrieveButton_clicked()
 {
-    boxret = new BoxRetrieval(0, "aba", "Admin", ui->boxListWidget->currentItem()->text());
+    boxret = new BoxRetrieval(0, "aba", "Admin", ui->boxListWidget->currentItem()->text().mid(17,2));
     boxret->move(0, 0);
     boxret->show();
 

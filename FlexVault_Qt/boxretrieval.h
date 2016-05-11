@@ -8,6 +8,7 @@ class AdminBoxAccess;
 class UserBoxAccess;
 class ActivityLog;
 class WeightWarningDialog;
+class SPIInterface;
 
 namespace Ui {
 class BoxRetrieval;
@@ -30,6 +31,7 @@ private:
     UserBoxAccess* uba;
     UserPrivileges* upriv;
     ActivityLog* log;
+    SPIInterface* spi;
     QString prevPage;
     QString user;
     QString box;

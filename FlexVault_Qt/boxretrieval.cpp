@@ -6,6 +6,7 @@
 #include "inactivityfilter.h"
 #include "activitylog.h"
 #include "weightwarningdialog.h"
+#include "spiinterface.h"
 
 BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QString box_) :
     QWidget(parent),
@@ -13,11 +14,16 @@ BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QS
 {
     ui->setupUi(this);
 
+    ui->msgLabel->setWordWrap(true);
+
     prevPage = prevPage_;
     user = user_;
     box = box_;
 
     InactivityFilter::stopTimer();
+
+    unsigned int cmd = 17408;
+    spi->writeToFV(&box_, &cmd);
 }
 
 BoxRetrieval::~BoxRetrieval()
