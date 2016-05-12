@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     Login login(0);
     login.move(0, 0);
-    login.show(); // change to showFullScreen() for BeagleBone
+    login.showFullScreen(); // change to showFullScreen() for BeagleBone
 
     return a.exec();
 }

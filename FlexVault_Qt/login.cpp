@@ -43,7 +43,7 @@ void Login::on_loginButton_clicked()
 
         amm = new AdminMainMenu(NULL);
         amm->move(0, 0);
-        amm->show(); // change to showFullScreen() for BeagleBone
+        amm->showFullScreen(); // change to showFullScreen() for BeagleBone
         this->hide();
     }
 

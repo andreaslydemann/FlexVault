@@ -12,6 +12,7 @@ class SPIInterface
 public:
     SPIInterface();
     int writeToFV(QString*, unsigned int*);
+    int readFromFV();
 };
 
 #endif // SPIINTERFACE_H

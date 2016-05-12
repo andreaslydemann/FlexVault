@@ -22,8 +22,9 @@ BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QS
 
     InactivityFilter::stopTimer();
 
-    unsigned int cmd = 17408;
-    spi->writeToFV(&box_, &cmd);
+    //unsigned int cmd = 17408;
+    //spi->writeToFV(&box_, &cmd);
+    spi->readFromFV();
 }
 
 BoxRetrieval::~BoxRetrieval()
@@ -48,7 +49,7 @@ void BoxRetrieval::on_returnButton_clicked()
     {
         aba = new AdminBoxAccess();
         aba->move(0, 0);
-        aba->show(); // change to showFullScreen() for BeagleBone
+        aba->showFullScreen(); // change to showFullScreen() for BeagleBone
         this->close();
     }
 

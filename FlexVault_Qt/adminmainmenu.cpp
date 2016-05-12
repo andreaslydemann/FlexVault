@@ -47,6 +47,6 @@ void AdminMainMenu::on_sdbButton_clicked()
 {
     aba = new AdminBoxAccess();
     aba->move(0, 0);
-    aba->show();
+    aba->showFullScreen();
     this->close();
 }
