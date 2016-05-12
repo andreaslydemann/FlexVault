@@ -23,7 +23,7 @@ bool InactivityFilter::eventFilter(QObject *obj, QEvent *ev)
 void InactivityFilter::resetTimer()
 {
     timerStopped = false;
-    timer->start(12000);
+    timer->start(120000);
 }
 
 void InactivityFilter::stopTimer()

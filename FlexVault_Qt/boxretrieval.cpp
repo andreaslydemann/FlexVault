@@ -22,9 +22,8 @@ BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QS
 
     InactivityFilter::stopTimer();
 
-    //unsigned int cmd = 17408;
-    //spi->writeToFV(&box_, &cmd);
-    spi->readFromFV();
+    unsigned int cmd = 17408;
+    spi->writeToFV(&box_, &cmd);
 }
 
 BoxRetrieval::~BoxRetrieval()
@@ -36,6 +35,8 @@ void BoxRetrieval::on_returnButton_clicked()
 {
     InactivityFilter::resetTimer();
     log->write(user, "SDB_" + box + "_retrieved");
+
+    spi->readFromFV();
 
     if(prevPage == "uba")
     {
