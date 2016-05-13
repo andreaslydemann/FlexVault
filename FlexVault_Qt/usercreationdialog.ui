@@ -6,29 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>480</height>
+    <width>480</width>
+    <height>272</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="qvirtualkeyboard" name="virtualKeyboard" native="true">
-   <property name="geometry">
-    <rect>
-     <x>-1</x>
-     <y>329</y>
-     <width>801</width>
-     <height>151</height>
-    </rect>
-   </property>
-   <zorder>widget_2</zorder>
-  </widget>
   <widget class="QWidget" name="widget_2" native="true">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>50</y>
+     <x>80</x>
+     <y>40</y>
      <width>321</width>
      <height>211</height>
     </rect>
@@ -125,9 +114,16 @@ font: 9pt &quot;Sans Serif&quot;;</string>
      </property>
     </widget>
    </widget>
-   <zorder>widget</zorder>
-   <zorder>widget</zorder>
-   <zorder>widget</zorder>
+  </widget>
+  <widget class="qvirtualkeyboard" name="virtualKeyboard" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>190</y>
+     <width>481</width>
+     <height>81</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <customwidgets>

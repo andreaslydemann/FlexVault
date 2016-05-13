@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>480</height>
+    <width>480</width>
+    <height>272</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,20 +16,20 @@
   <widget class="QListWidget" name="sdbListWidget">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>70</y>
-     <width>461</width>
-     <height>371</height>
+     <x>150</x>
+     <y>50</y>
+     <width>321</width>
+     <height>211</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>170</y>
+     <x>10</x>
+     <y>100</y>
      <width>131</width>
-     <height>51</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -39,10 +39,10 @@
   <widget class="QPushButton" name="deleteButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>230</y>
+     <x>10</x>
+     <y>140</y>
      <width>131</width>
-     <height>51</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -52,10 +52,10 @@
   <widget class="QPushButton" name="retrieveButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>290</y>
+     <x>10</x>
+     <y>180</y>
      <width>131</width>
-     <height>51</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -65,8 +65,8 @@
   <widget class="QPushButton" name="backButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>400</y>
+     <x>10</x>
+     <y>220</y>
      <width>131</width>
      <height>41</height>
     </rect>
@@ -78,8 +78,8 @@
   <widget class="QLabel" name="sdbLabel">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>40</y>
+     <x>230</x>
+     <y>30</y>
      <width>181</width>
      <height>17</height>
     </rect>
@@ -91,8 +91,8 @@
   <widget class="QLabel" name="userIDLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>90</y>
+     <x>10</x>
+     <y>40</y>
      <width>101</width>
      <height>17</height>
     </rect>
@@ -104,8 +104,8 @@
   <widget class="QLabel" name="userPrivilegesLabel">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>40</y>
+     <x>10</x>
+     <y>0</y>
      <width>151</width>
      <height>31</height>
     </rect>
@@ -116,14 +116,14 @@
     </font>
    </property>
    <property name="text">
-    <string>USER PRIVILEGES</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;USER PRIVILEGES&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QTextBrowser" name="userIDTextBrowser">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>110</y>
+     <x>10</x>
+     <y>60</y>
      <width>131</width>
      <height>31</height>
     </rect>

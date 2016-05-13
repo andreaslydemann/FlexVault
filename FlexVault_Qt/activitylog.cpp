@@ -100,6 +100,6 @@ void ActivityLog::on_backButton_clicked()
 {
     amm = new AdminMainMenu();
     amm->move(0, 0);
-    amm->show(); // change to showFullScreen() for BeagleBone
+    amm->showFullScreen(); // change to showFullScreen() for BeagleBone
     this->close();
 }

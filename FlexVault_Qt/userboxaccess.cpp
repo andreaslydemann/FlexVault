@@ -25,7 +25,7 @@ void UserBoxAccess::on_logOutButton_clicked()
     log->write(user, "Log_out");
     login = new Login();
     login->move(0, 0);
-    login->show();
+    login->showFullScreen();
     this->close();
 }
 
@@ -57,7 +57,7 @@ void UserBoxAccess::on_retrieveButton_clicked()
 {
     boxret = new BoxRetrieval(0, "uba", user, ui->boxListWidget->currentItem()->text());
     boxret->move(0, 0);
-    boxret->show();
+    boxret->showFullScreen();
 
     this->close();
 }

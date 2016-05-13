@@ -42,7 +42,7 @@ void BoxRetrieval::on_returnButton_clicked()
     {
         uba = new UserBoxAccess(0, user);
         uba->move(0, 0);
-        uba->show(); // change to showFullScreen() for BeagleBone
+        uba->showFullScreen(); // change to showFullScreen() for BeagleBone
         this->close();
     }
 
@@ -58,7 +58,7 @@ void BoxRetrieval::on_returnButton_clicked()
     {
         upriv = new UserPrivileges(0, user);
         upriv->move(0, 0);
-        upriv->show(); // change to showFullScreen() for BeagleBone
+        upriv->showFullScreen(); // change to showFullScreen() for BeagleBone
         this->close();
     }
 }

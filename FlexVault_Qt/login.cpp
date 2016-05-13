@@ -55,7 +55,7 @@ void Login::on_loginButton_clicked()
 
         uba = new UserBoxAccess(NULL, ui->idLineEdit->text());
         uba->move(0, 0);
-        uba->show(); // change to showFullScreen() for BeagleBone
+        uba->showFullScreen(); // change to showFullScreen() for BeagleBone
         this->hide();
     }
 
