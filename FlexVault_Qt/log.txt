@@ -35,3 +35,8 @@ Hans SDB_2_removed Fri May 13 11:18:36 2016
 Admin Log_in Fri May 13 11:19:49 2016
 Admin SDB_1_retrieved Fri May 13 11:20:00 2016
 Admin Log_out Fri May 13 11:20:09 2016
+Admin Log_in Sat May 14 18:32:29 2016
+Ole Created Sat May 14 18:32:49 2016
+Ole SDB_1_added Sat May 14 18:32:55 2016
+Ole SDB_3_added Sat May 14 18:32:57 2016
+Ole SDB_3_removed Sat May 14 18:33:00 2016

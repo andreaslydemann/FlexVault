@@ -78,9 +78,8 @@ void Login::lineEdit_textChanged()
 bool Login::eventFilter(QObject* object, QEvent* event)
 {
     if((object == ui->idLineEdit || object == ui->passwordLineEdit) && event->type() == QEvent::MouseButtonPress) {
-        // bring up your custom edit
         ui->virtualKeyboard->show();
-        return false; // lets the event continue to the edit
+        return false;
     }
     return false;
 }
