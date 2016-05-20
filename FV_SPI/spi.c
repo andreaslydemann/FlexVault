@@ -84,7 +84,7 @@ static int psoc_spi_probe(struct spi_device *spi)
   printk(KERN_DEBUG "Probe called: New SPI device: %s using chip select: %i\n",
 	 spi->modalias, spi->chip_select);
   
-  spi->bits_per_word = 16;  
+  spi->bits_per_word = 8;  
   spi_setup(spi);
 
   /* In this case we assume just one device */ 
@@ -125,7 +125,7 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
 {
     int minor, len;
     char buffer[MAXLEN];
-    u16 value = 0; 
+    u8 value = 0; 
     struct spi_transfer t[1];
     struct spi_message m;
     //u16 cmd = 0;
@@ -161,7 +161,7 @@ size_t psoc_write(struct file *filep, const char __user *ubuf, size_t count, lof
     /* Configure tx/rx buffers */
     t[0].tx_buf = &value;
     t[0].rx_buf = NULL;
-    t[0].len = 2;
+    t[0].len = 1;
     spi_message_add_tail(&t[0], &m);
 
     /* Transmit SPI Data (blocking) */
@@ -176,7 +176,7 @@ ssize_t psoc_read(struct file *filep, char __user *ubuf, size_t count, loff_t *f
 {
     int len;
     char buffer[MAXLEN];
-    u16 value = 0;
+    u8 value = 0;
     
     struct spi_transfer t[1];
     struct spi_message m;
@@ -188,11 +188,11 @@ ssize_t psoc_read(struct file *filep, char __user *ubuf, size_t count, loff_t *f
     memset(&t, 0, sizeof(t)); 
     spi_message_init(&m);
     m.spi = psoc_spi_device;
-    
+        
     t[0].delay_usecs = 60;
     t[0].tx_buf = NULL;
     t[0].rx_buf = &value;
-    t[0].len = 2;
+    t[0].len = 1;
     spi_message_add_tail(&t[0], &m);
     
     spi_sync(m.spi, &m);

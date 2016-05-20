@@ -24,7 +24,7 @@ static struct spi_board_info slave_spi_board_info = {
   .modalias	    = "psoc",
   .bus_num	    = 1,
   .chip_select	    = 0,
-  .max_speed_hz	    = 10000000,
+  .max_speed_hz	    = 1000000,
   .controller_data  = &mcspi_config,
   .mode             = SPI_MODE_3, // Clock polarity
 };
