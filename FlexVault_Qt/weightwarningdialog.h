@@ -2,6 +2,7 @@
 #define WEIGHTWARNINGDIALOG_H
 
 #include <QWidget>
+#include <QTimer>
 
 namespace Ui {
 class WeightWarningDialog;
@@ -15,8 +16,12 @@ public:
     explicit WeightWarningDialog(QWidget *parent = 0);
     ~WeightWarningDialog();
 
+public slots:
+    void closeDialog();
+
 private:
     Ui::WeightWarningDialog *ui;
+    static QTimer *timer;
 };
 
 #endif // WEIGHTWARNINGDIALOG_H

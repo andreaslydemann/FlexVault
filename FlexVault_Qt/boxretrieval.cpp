@@ -22,7 +22,7 @@ BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QS
 
     InactivityFilter::stopTimer();
 
-    unsigned int cmd = 17408;
+    unsigned int cmd = 32;
     spi->writeToFV(&box_, &cmd);
 }
 
@@ -33,32 +33,41 @@ BoxRetrieval::~BoxRetrieval()
 
 void BoxRetrieval::on_returnButton_clicked()
 {
-    InactivityFilter::resetTimer();
-    log->write(user, "SDB_" + box + "_retrieved");
-
-    spi->readFromFV();
-
-    if(prevPage == "uba")
+    if(spi->checkWeight())
     {
-        uba = new UserBoxAccess(0, user);
-        uba->move(0, 0);
-        uba->showFullScreen(); // change to showFullScreen() for BeagleBone
-        this->close();
+        wwd = new WeightWarningDialog();
+        wwd->move(100, 100);
+        wwd->show();
     }
 
-    if(prevPage == "aba")
+    else
     {
-        aba = new AdminBoxAccess();
-        aba->move(0, 0);
-        aba->showFullScreen(); // change to showFullScreen() for BeagleBone
-        this->close();
-    }
+        spi->returnSDB(box);
+        log->write(user, "SDB_" + box + "_retrieved");
+        InactivityFilter::resetTimer();
 
-    if(prevPage == "upriv")
-    {
-        upriv = new UserPrivileges(0, user);
-        upriv->move(0, 0);
-        upriv->showFullScreen(); // change to showFullScreen() for BeagleBone
-        this->close();
+        if(prevPage == "uba")
+        {
+            uba = new UserBoxAccess(0, user);
+            uba->move(0, 0);
+            uba->showFullScreen(); // change to showFullScreen() for BeagleBone
+            this->close();
+        }
+
+        if(prevPage == "aba")
+        {
+            aba = new AdminBoxAccess();
+            aba->move(0, 0);
+            aba->showFullScreen(); // change to showFullScreen() for BeagleBone
+            this->close();
+        }
+
+        if(prevPage == "upriv")
+        {
+            upriv = new UserPrivileges(0, user);
+            upriv->move(0, 0);
+            upriv->showFullScreen(); // change to showFullScreen() for BeagleBone
+            this->close();
+        }
     }
 }

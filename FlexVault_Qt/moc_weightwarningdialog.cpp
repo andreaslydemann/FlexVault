@@ -22,25 +22,33 @@ static const uint qt_meta_data_WeightWarningDialog[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       1,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: signature, parameters, type, tag, flags
+      21,   20,   20,   20, 0x0a,
+
        0        // eod
 };
 
 static const char qt_meta_stringdata_WeightWarningDialog[] = {
-    "WeightWarningDialog\0"
+    "WeightWarningDialog\0\0closeDialog()\0"
 };
 
 void WeightWarningDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        Q_ASSERT(staticMetaObject.cast(_o));
+        WeightWarningDialog *_t = static_cast<WeightWarningDialog *>(_o);
+        switch (_id) {
+        case 0: _t->closeDialog(); break;
+        default: ;
+        }
+    }
     Q_UNUSED(_a);
 }
 
@@ -75,6 +83,11 @@ int WeightWarningDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 1)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE

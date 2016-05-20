@@ -68,7 +68,8 @@ void DBInterface::connectToDb(QSqlDatabase &fv_db)
     fv_db = QSqlDatabase::addDatabase("QSQLITE"); //use SQLite
 
     //set path
-    fv_db.setDatabaseName("/home/stud/FV/FlexVault/FlexVault_Qt/fv.db");
+    //fv_db.setDatabaseName("/home/stud/FV/FlexVault/FlexVault_Qt/fv.db");
+    fv_db.setDatabaseName("/home/root/fv.db");
 
     if (!fv_db.open())
     {

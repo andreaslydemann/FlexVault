@@ -78,3 +78,29 @@ int SPIInterface::readFromFV()
     return value;
 }
 
+bool SPIInterface::checkWeight()
+{
+    QString empty = "";
+    unsigned int cmd = 96;
+    writeToFV(&empty, &cmd);
+
+    if(readFromFV() >= 100)
+        return false;
+
+    else
+        return true;
+}
+
+void SPIInterface::retrieveSDB(QString sdb)
+{
+    unsigned int cmd = 32;
+
+    writeToFV(&sdb, &cmd);
+}
+
+void SPIInterface::returnSDB(QString sdb)
+{
+    unsigned int cmd = 64;
+
+    writeToFV(&sdb, &cmd);
+}

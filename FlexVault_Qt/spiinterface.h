@@ -13,6 +13,9 @@ public:
     SPIInterface();
     int writeToFV(QString*, unsigned int*);
     int readFromFV();
+    bool checkWeight();
+    void returnSDB(QString);
+    void retrieveSDB(QString);
 };
 
 #endif // SPIINTERFACE_H
