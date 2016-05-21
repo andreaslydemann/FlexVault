@@ -1,10 +1,5 @@
 #include "spiinterface.h"
 
-SPIInterface::SPIInterface()
-{
-
-}
-
 int SPIInterface::writeToFV(QString* sdb, unsigned int* cmd)
 {
     unsigned int data = sdb->toInt();

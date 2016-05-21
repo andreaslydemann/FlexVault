@@ -62,8 +62,7 @@ void UserConfiguration::updateUConf()
 void UserConfiguration::on_privilegesButton_clicked()
 {
     upriv = new UserPrivileges(NULL, ui->userListWidget->currentItem()->text());
-    upriv->move(0, 0);
-    upriv->showFullScreen(); // change to showFullScreen() for BeagleBone
+    upriv->showFullScreen();
     this->close();
 }
 
@@ -89,7 +88,6 @@ void UserConfiguration::on_deleteButton_clicked()
 void UserConfiguration::on_backButton_clicked()
 {
     amm = new AdminMainMenu();
-    amm->move(0, 0);
-    amm->showFullScreen(); // change to showFullScreen() for BeagleBone
+    amm->showFullScreen();
     this->close();
 }

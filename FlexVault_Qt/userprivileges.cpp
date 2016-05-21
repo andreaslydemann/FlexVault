@@ -58,8 +58,7 @@ void UserPrivileges::updateUPriv()
 void UserPrivileges::on_addButton_clicked()
 {
     addUP = new AddUserPrivileges(0, user);
-    addUP->move(0, 0);
-    addUP->showFullScreen(); // change to showFullScreen() for BeagleBone
+    addUP->showFullScreen();
     this->close();
 }
 
@@ -80,7 +79,6 @@ void UserPrivileges::on_deleteButton_clicked()
 void UserPrivileges::on_backButton_clicked()
 {
     uconf = new UserConfiguration();
-    uconf->move(0, 0);
     uconf->showFullScreen();
     this->close();
 }
@@ -88,7 +86,6 @@ void UserPrivileges::on_backButton_clicked()
 void UserPrivileges::on_retrieveButton_clicked()
 {
     boxret = new BoxRetrieval(0, "upriv", user, ui->sdbListWidget->currentItem()->text());
-    boxret->move(0, 0);
     boxret->showFullScreen();
     this->close();
 }

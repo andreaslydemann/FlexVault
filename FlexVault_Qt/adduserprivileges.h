@@ -18,12 +18,10 @@ class AddUserPrivileges : public QWidget
 public:
     explicit AddUserPrivileges(QWidget *parent = 0, QString = "");
     ~AddUserPrivileges();
-
     void updateSDBUsage();
 
 private slots:
     void on_buttonBox_accepted();
-
     void on_buttonBox_rejected();
 
 private:

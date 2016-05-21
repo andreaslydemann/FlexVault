@@ -46,7 +46,6 @@ void AddUserPrivileges::on_buttonBox_accepted()
     log->write(userID, privilegeAdded);
 
     upriv = new UserPrivileges(0, userID);
-    upriv->move(0, 0);
     upriv->showFullScreen();
     this->close();
 }
@@ -54,7 +53,6 @@ void AddUserPrivileges::on_buttonBox_accepted()
 void AddUserPrivileges::on_buttonBox_rejected()
 {
     upriv = new UserPrivileges(0, userID);
-    upriv->move(0, 0);
     upriv->showFullScreen();
     this->close();
 }

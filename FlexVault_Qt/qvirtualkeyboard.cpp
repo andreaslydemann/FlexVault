@@ -18,22 +18,16 @@
  * along with Virtual Keyboard. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "qvirtualkeyboard.h"
 
 #define defaultWidth    320
 #define defaultHeight   240
-
-
-
-
 
 qvirtualkeyboard::qvirtualkeyboard(QWidget*parent) : QWidget(parent)
 {
     parentWidget = parent;      // Stock le pointeur du Widget parent dans parentWidget
 
     createButtons();            // Méthode qui génère et organise l'affiche des boutons
-
 
 // Initialise le signalMapper pour les boutons B0 à B25 : Signal clicked()
      signalMapper = new QSignalMapper(this);
@@ -57,8 +51,6 @@ qvirtualkeyboard::qvirtualkeyboard(QWidget*parent) : QWidget(parent)
 
      connect(signalMapper2, SIGNAL(mapped(int)), this, SLOT(buttonPressed(int))); // Envoi le numéro du bouton au slot buttonPressed
 
-
-
 // Initialise le signalMapper pour les boutons des caractères accentués : Signal clicked()
     AccentedCharSignalMapper = new QSignalMapper(this);
 
@@ -70,24 +62,15 @@ qvirtualkeyboard::qvirtualkeyboard(QWidget*parent) : QWidget(parent)
 
      connect(AccentedCharSignalMapper, SIGNAL(mapped(int)), this, SLOT(sendAccentedChar(int))); // Envoi le numéro du bouton au slot sendAccentedChar
 
-
-
-
 // Connexion des boutons de contrôle C1 à C6
     connect(buttonC2, SIGNAL(clicked()), this, SLOT(buttonC2Function()));
     connect(buttonC3, SIGNAL(clicked()), this, SLOT(buttonC3Function()));
     connect(buttonC4, SIGNAL(clicked()), this, SLOT(buttonC4Function()));
     connect(buttonC5, SIGNAL(clicked()), this, SLOT(buttonC5Function()));
 
-
-
-
 // Connexion du Timer pour l'affichage des caractères accentués
     connect(pressTimer, SIGNAL(timeout()), this, SLOT(displayAccentedChar()));
 }
-
-
-
 
 void qvirtualkeyboard::createButtons(void)
 {
@@ -97,13 +80,11 @@ void qvirtualkeyboard::createButtons(void)
     this->setGeometry(QRect(0, 0, kw, kh/2));
     this->setMinimumSize(50,50);
 
-
 // Arrière plan du clavier
     backgroundLabel = new QLabel("",this);
     backgroundLabel->setStyleSheet(QString::fromUtf8("background-color:rgb(105, 105, 105);"));
     backgroundLabel->setGeometry(QRect(0, 0, kw, kh/2));
     backgroundLabel->show();
-
 
 // Déclaration des 26 boutons centraux qui contiennent des caractères. Les QPushButton sont stockés dans un QVector
     for(int i=0; i < 26; i++)
@@ -112,17 +93,14 @@ void qvirtualkeyboard::createButtons(void)
         button[i]->setFocusPolicy(Qt::NoFocus);     // Pas de focus sur ces boutons
     }
 
-
 // Widget qui contient le layout principal vertical
     verticalLayoutWidget = new QWidget(this);
     verticalLayoutWidget->setGeometry(QRect(0, 0, kw, kh/2));
-
 
 // Laypout principal vertical
     mainVerticalLayout = new QVBoxLayout(verticalLayoutWidget);
     mainVerticalLayout->setSpacing(0);
     mainVerticalLayout->setContentsMargins(0, 0, 0, 0);
-
 
 // Layout Horizontal 1 -----------------------------------------------
     horizontalLayout_1 = new QHBoxLayout();
@@ -134,7 +112,6 @@ void qvirtualkeyboard::createButtons(void)
 
     mainVerticalLayout->addLayout(horizontalLayout_1); // Ajoute le layout horizontal 1 au layout vertical
 
-
 // Layout Horizontal 2 -----------------------------------------------
     horizontalLayout_2 = new QHBoxLayout();
 
@@ -144,7 +121,6 @@ void qvirtualkeyboard::createButtons(void)
     }
 
     mainVerticalLayout->addLayout(horizontalLayout_2); // Ajoute le layout horizontal 2 au layout vertical
-
 
 // Layout Horizontal 3 -----------------------------------------------
     horizontalLayout_3 = new QHBoxLayout();
@@ -169,9 +145,7 @@ void qvirtualkeyboard::createButtons(void)
     buttonC2->setFocusPolicy(Qt::NoFocus);          // Pas de focus
     horizontalLayout_3->addWidget(buttonC2);        // Ajoute le bouton C2 au layout horizontal 3
 
-
     mainVerticalLayout->addLayout(horizontalLayout_3); // Ajoute le layout horizontal 3 au layout vertical
-
 
 // Layout Horizontal 4 -----------------------------------------------
     horizontalLayout_4 = new QHBoxLayout();
@@ -192,21 +166,17 @@ void qvirtualkeyboard::createButtons(void)
 
     mainVerticalLayout->addLayout(horizontalLayout_4);
 
-
 // Etiquette qui affiche la lettre appyuée
     labelDisplayChar = new QPushButton("", parentWidget);
     labelDisplayChar->hide();
-
 
 // initialise les boutons de contrôle
     buttonC3->setText(QString("123"));
     buttonC1->setText(QString("^"));
     buttonC1->setCheckable(true);
 
-
 // Affiche l'alphabet
     displayAlphabet();
-
 
 // Initialisation des boutons pour les caractères accentués
     for(int i = 0; i < 10; i++)
@@ -216,10 +186,8 @@ void qvirtualkeyboard::createButtons(void)
         AccentedCharButton[i]->hide();
     }
 
-
 // Timer pour les carctères accentués
     pressTimer = new QTimer(this);
-
 
 // Initialise l'arrière-plan et le layout pour boutons des carctères accentués
     backgroundAccentedCharLabel = new QLabel("",parentWidget);
@@ -230,8 +198,6 @@ void qvirtualkeyboard::createButtons(void)
 
     return;
 }
-
-
 
 void qvirtualkeyboard::displayAlphabet(void) // Affiche l'alphabet
 {
@@ -246,8 +212,6 @@ void qvirtualkeyboard::displayAlphabet(void) // Affiche l'alphabet
         for(int i=0; i < 26; i++)
             button[i]->setText(QChar::fromAscii(qwerty[i]));
 }
-
-
 
 void qvirtualkeyboard::displayNumber(void) // Affiche les nombres
 {
@@ -274,8 +238,6 @@ void qvirtualkeyboard::displayNumber(void) // Affiche les nombres
     return;
 }
 
-
-
 void qvirtualkeyboard::displaySpecialChar(void) // Affiche les caractères spéciaux
 {
     unsigned char SpecialChar[] = {'[', ']', '{', '}', '#', '%', '^', '*', '+', '=', '_', '\\', '|', '~', '<', '>', '$', '£', '¥', '¤', '.', ',', '?', '!', '\'', '°'};
@@ -288,15 +250,11 @@ void qvirtualkeyboard::displaySpecialChar(void) // Affiche les caractères spéc
     return;
 }
 
-
-
 void qvirtualkeyboard::buttonC2Function(void) // Contrôle le bouton C2 - BackSpace
 {
     QApplication::sendEvent(parentWidget->focusWidget(), new QKeyEvent(QEvent::KeyPress, Qt::Key_Backspace, Qt::NoModifier, QString(QChar(0x0008))));
     return;
 }
-
-
 
 void qvirtualkeyboard::buttonC3Function(void) // Contrôle le bouton C3
 {
@@ -314,24 +272,17 @@ void qvirtualkeyboard::buttonC3Function(void) // Contrôle le bouton C3
     return;
 }
 
-
-
 void qvirtualkeyboard::buttonC4Function(void) // Contrôle le bouton C4 - Espace
 {
     QApplication::sendEvent(parentWidget->focusWidget(), new QKeyEvent(QEvent::KeyPress, ' ', Qt::NoModifier, QString(" ")));
     return;
 }
 
-
-
 void qvirtualkeyboard::buttonC5Function(void) // Contrôle le bouton C5
 {
     this->hide();
     return;
 }
-
-
-
 
 void qvirtualkeyboard::sendChar(int indexOfCharToSend) // Envoit le caractère appuyé au widget qui a le focus
 {
@@ -353,13 +304,10 @@ void qvirtualkeyboard::sendChar(int indexOfCharToSend) // Envoit le caractère a
         QApplication::sendEvent(parentWidget->focusWidget(), new QKeyEvent(QEvent::KeyPress, charToSend.unicode(), Qt::NoModifier, QString(charToSend)));
     }
 
-
     labelDisplayChar->hide();   // Enlève l'étiquette du bouton appuyé
 
     return;
 }
-
-
 
 void qvirtualkeyboard::buttonPressed(int indexOfCharToSend) // Affiche l'étiquette du bouton appuyé
 {
@@ -398,9 +346,6 @@ void qvirtualkeyboard::buttonPressed(int indexOfCharToSend) // Affiche l'étique
     return;
 }
 
-
-
-
 void qvirtualkeyboard::resizeEvent ( QResizeEvent * event )
 {
     event->accept();
@@ -415,8 +360,6 @@ void qvirtualkeyboard::resizeEvent ( QResizeEvent * event )
 
     return;
 }
-
-
 
 void qvirtualkeyboard::displayAccentedChar(void) // Affiche les caractères accentués
 {
@@ -461,11 +404,8 @@ void qvirtualkeyboard::displayAccentedChar(void) // Affiche les caractères acce
         return;
     }
 
-
     labelDisplayChar->hide();                               // Cache l'étiquette du bouton appuyé
     pressTimer->stop();                                     // Arrête le timer
-
-
 
     int width = this->width()*6/100*AccentedCharString.size();
     if(width < 4+22*AccentedCharString.size())
@@ -473,18 +413,14 @@ void qvirtualkeyboard::displayAccentedChar(void) // Affiche les caractères acce
         width = 4+22*AccentedCharString.size();
     }
 
-
 // Arrière plan pour les caractères accentués
     backgroundAccentedCharLabel->setStyleSheet(QString::fromUtf8("background-color:rgb(230, 230, 230);border: 2px solid #8f8f91;border-radius: 10px;"));
     backgroundAccentedCharLabel->setGeometry(QRect(button[lastPressedKey]->x()+this->x(), button[lastPressedKey]->y()-15*button[lastPressedKey]->height()/10-3+this->y(), width, 15*button[lastPressedKey]->height()/10));
     backgroundAccentedCharLabel->show();
 
-
 // Widget qui contient le layout
     verticalLayoutWidget2->setGeometry(QRect(button[lastPressedKey]->x()+this->x(), button[lastPressedKey]->y()-15*button[lastPressedKey]->height()/10-3+this->y(), width, 15*button[lastPressedKey]->height()/10));
     verticalLayoutWidget2->show();
-
-
 
 // Supprime tous les boutons du layout
     for(int i = 0; i < AccentedCharButton.size(); i++)
@@ -492,8 +428,6 @@ void qvirtualkeyboard::displayAccentedChar(void) // Affiche les caractères acce
         horizontalLayout->removeWidget(AccentedCharButton[i]);
         AccentedCharButton[i]->hide();
     }
-
-
 
 // Ajoute les boutons au layout
     for(int i = 0; i < AccentedCharString.size(); i++)
@@ -507,8 +441,6 @@ void qvirtualkeyboard::displayAccentedChar(void) // Affiche les caractères acce
     return;
 }
 
-
-
 void qvirtualkeyboard::sendAccentedChar(int indexOfCharToSend)
 {
     QChar charToSend(AccentedCharButton[indexOfCharToSend]->text().at(0));
@@ -521,17 +453,12 @@ void qvirtualkeyboard::sendAccentedChar(int indexOfCharToSend)
     return;
 }
 
-
-
 void qvirtualkeyboard::mouseReleaseEvent(QMouseEvent * event)
 {
     event->accept();
     labelDisplayChar->hide();   // Enlève l'étiquette du bouton appuyé
     return;
 }
-
-
-
 
 void qvirtualkeyboard::setKeyboardLayout(int layout)
 {

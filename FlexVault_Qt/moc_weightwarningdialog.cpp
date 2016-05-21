@@ -30,7 +30,7 @@ static const uint qt_meta_data_WeightWarningDialog[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-      21,   20,   20,   20, 0x0a,
+      21,   20,   20,   20, 0x08,
 
        0        // eod
 };

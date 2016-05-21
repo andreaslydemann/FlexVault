@@ -16,7 +16,6 @@ Login::Login(QWidget *parent) :
     connect(ui->passwordLineEdit, SIGNAL(textChanged(const QString &)), this, SLOT(lineEdit_textChanged()));
     lineEdit_textChanged();
 
-    //ui->idLineEdit->focusInEvent();
     ui->flexVaultLabel->setFocus();
 
     ui->idLineEdit->installEventFilter(this);
@@ -42,9 +41,8 @@ void Login::on_loginButton_clicked()
         log->write("Admin", "Log_in");
 
         amm = new AdminMainMenu(NULL);
-        amm->move(0, 0);
-        amm->showFullScreen(); // change to showFullScreen() for BeagleBone
-        this->hide();
+        amm->showFullScreen();
+        this->close();
     }
 
     else if(dbi.validateLogin(ui->idLineEdit->text(), ui->passwordLineEdit->text()))
@@ -54,9 +52,8 @@ void Login::on_loginButton_clicked()
         log->write(ui->idLineEdit->text(), "Log_in");
 
         uba = new UserBoxAccess(NULL, ui->idLineEdit->text());
-        uba->move(0, 0);
-        uba->showFullScreen(); // change to showFullScreen() for BeagleBone
-        this->hide();
+        uba->showFullScreen();
+        this->close();
     }
 
     else

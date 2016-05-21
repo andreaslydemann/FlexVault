@@ -20,7 +20,6 @@ public:
 
 private slots:
     void on_retrieveButton_clicked();
-
     void on_backButton_clicked();
 
 private:

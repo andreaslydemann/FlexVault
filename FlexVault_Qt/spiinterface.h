@@ -10,7 +10,6 @@
 class SPIInterface
 {
 public:
-    SPIInterface();
     int writeToFV(QString*, unsigned int*);
     int readFromFV();
     bool checkWeight();

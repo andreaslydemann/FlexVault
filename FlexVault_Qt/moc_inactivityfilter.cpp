@@ -30,7 +30,7 @@ static const uint qt_meta_data_InactivityFilter[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-      18,   17,   17,   17, 0x0a,
+      18,   17,   17,   17, 0x08,
 
        0        // eod
 };

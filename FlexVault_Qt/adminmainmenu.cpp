@@ -20,8 +20,7 @@ AdminMainMenu::~AdminMainMenu()
 void AdminMainMenu::on_usersButton_clicked()
 {
     uconf = new UserConfiguration();
-    uconf->move(0, 0);
-    uconf->showFullScreen(); // change to showFullScreen() for BeagleBone
+    uconf->showFullScreen();
     this->close();
 }
 
@@ -29,7 +28,6 @@ void AdminMainMenu::on_logOutButton_clicked()
 {
     log->write("Admin", "Log_out");
     login = new Login(0);
-    login->move(0, 0);
     login->showFullScreen();
 
     this->close();
@@ -38,7 +36,6 @@ void AdminMainMenu::on_logOutButton_clicked()
 void AdminMainMenu::on_logButton_clicked()
 {
     log = new ActivityLog();
-    log->move(0, 0);
     log->showFullScreen();
     this->close();
 }
@@ -46,7 +43,6 @@ void AdminMainMenu::on_logButton_clicked()
 void AdminMainMenu::on_sdbButton_clicked()
 {
     aba = new AdminBoxAccess();
-    aba->move(0, 0);
     aba->showFullScreen();
     this->close();
 }

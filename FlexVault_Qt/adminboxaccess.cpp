@@ -21,7 +21,6 @@ AdminBoxAccess::~AdminBoxAccess()
 void AdminBoxAccess::on_retrieveButton_clicked()
 {
     boxret = new BoxRetrieval(0, "aba", "Admin", ui->boxListWidget->currentItem()->text().mid(17,2));
-    boxret->move(0, 0);
     boxret->showFullScreen();
 
     this->close();
@@ -30,7 +29,6 @@ void AdminBoxAccess::on_retrieveButton_clicked()
 void AdminBoxAccess::on_backButton_clicked()
 {
     amm = new AdminMainMenu();
-    amm->move(0, 0);
-    amm->showFullScreen(); // change to showFullScreen() for BeagleBone
+    amm->showFullScreen();
     this->close();
 }

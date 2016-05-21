@@ -11,24 +11,18 @@
 class DBInterface
 {
 public:
-
 QListWidgetItem* getColumnAsItems(QString table, QString column, int & retSize);
 bool validateLogin(QString userID, QString password);
 void writeUserToDb(QString userID, QString password);
 void connectToDb(QSqlDatabase &fv_db);
 void disconnectFromDb(QSqlDatabase &fv_db);
-//void createUserPTable(QString);
 void assignPrivileges(QString, QString);
-//int getUserCount(QString);
 QListWidgetItem* getUserPrivileges(QString, int & retSize);
 QString getUserID(QString);
-//void incUserCount(QString);
-//void decUserCount(QString);
 bool checkBoxUsage(QString);
 bool checkName(QString);
 void deletePrivilege(QString userID, QString sdb);
 void deleteUser(QString userID);
-//void resetSDB();
 };
 
 #endif // DBINTERFACE_H

@@ -16,7 +16,7 @@ public:
     explicit WeightWarningDialog(QWidget *parent = 0);
     ~WeightWarningDialog();
 
-public slots:
+private slots:
     void closeDialog();
 
 private:

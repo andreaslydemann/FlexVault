@@ -33,21 +33,20 @@ static const uint qt_meta_data_UserPrivileges[] = {
       16,   15,   15,   15, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      36,   15,   15,   15, 0x0a,
-      50,   15,   15,   15, 0x08,
-      73,   15,   15,   15, 0x08,
-      99,   15,   15,   15, 0x08,
-     123,   15,   15,   15, 0x08,
+      36,   15,   15,   15, 0x08,
+      59,   15,   15,   15, 0x08,
+      85,   15,   15,   15, 0x08,
+     109,   15,   15,   15, 0x08,
+     137,   15,   15,   15, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_UserPrivileges[] = {
     "UserPrivileges\0\0addButton_clicked()\0"
-    "updateUPriv()\0on_addButton_clicked()\0"
-    "on_deleteButton_clicked()\0"
+    "on_addButton_clicked()\0on_deleteButton_clicked()\0"
     "on_backButton_clicked()\0"
-    "on_retrieveButton_clicked()\0"
+    "on_retrieveButton_clicked()\0updateUPriv()\0"
 };
 
 void UserPrivileges::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -57,11 +56,11 @@ void UserPrivileges::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         UserPrivileges *_t = static_cast<UserPrivileges *>(_o);
         switch (_id) {
         case 0: _t->addButton_clicked(); break;
-        case 1: _t->updateUPriv(); break;
-        case 2: _t->on_addButton_clicked(); break;
-        case 3: _t->on_deleteButton_clicked(); break;
-        case 4: _t->on_backButton_clicked(); break;
-        case 5: _t->on_retrieveButton_clicked(); break;
+        case 1: _t->on_addButton_clicked(); break;
+        case 2: _t->on_deleteButton_clicked(); break;
+        case 3: _t->on_backButton_clicked(); break;
+        case 4: _t->on_retrieveButton_clicked(); break;
+        case 5: _t->updateUPriv(); break;
         default: ;
         }
     }

@@ -23,7 +23,6 @@ public:
 
 private slots:
     void on_logOutButton_clicked();
-
     void on_retrieveButton_clicked();
 
 private:

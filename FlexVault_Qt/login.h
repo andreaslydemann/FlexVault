@@ -22,7 +22,7 @@ public:
     ~Login();
     bool eventFilter(QObject* object, QEvent* event);
 
-public slots:
+private slots:
     void on_loginButton_clicked();
     void lineEdit_textChanged();
 

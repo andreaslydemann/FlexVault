@@ -34,7 +34,6 @@ class qvirtualkeyboard : public QWidget
         void resizeEvent(QResizeEvent * event);
         void setKeyboardLayout(int layout);
 
-
     private slots:
         void createButtons(void);
 
@@ -52,9 +51,6 @@ class qvirtualkeyboard : public QWidget
 
         void displayAccentedChar(void);
         void sendAccentedChar(int indexOfCharToSend);
-
-
-
 
     private:
         QWidget *parentWidget;

@@ -21,15 +21,12 @@ public:
     explicit UserPrivileges(QWidget *parent = 0, QString = "");
     ~UserPrivileges();
 
-public slots:
-    void updateUPriv();
-
 private slots:
     void on_addButton_clicked();
     void on_deleteButton_clicked();
     void on_backButton_clicked();
-
     void on_retrieveButton_clicked();
+    void updateUPriv();
 
 private:
     Ui::UserPrivileges* ui;

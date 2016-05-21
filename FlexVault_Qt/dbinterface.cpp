@@ -88,13 +88,6 @@ void DBInterface::disconnectFromDb(QSqlDatabase &fv_db)
     QSqlDatabase::removeDatabase(fv_db.connectionName());
 }
 
-//void DBInterface::createUserPTable(QString userID)
-//{
-//    QSqlQuery qry;
-
-//    qry.exec("CREATE TABLE " + userID + "(post_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, box_access INTEGER NOT NULL);");
-//}
-
 void DBInterface::assignPrivileges(QString name, QString sdb)
 {
     QSqlQuery qry;
@@ -102,22 +95,6 @@ void DBInterface::assignPrivileges(QString name, QString sdb)
 
     //qry.exec("insert into " + name + "(box_access) values(" + sdb + ");");
 }
-
-//int DBInterface::getUserCount(QString sdb)
-//{
-//    QSqlQuery qry;
-//    int count;
-
-//    qry.exec("SELECT user_count FROM safedb WHERE post_id = '" + sdb + "';");
-
-//    if (qry.next ())
-//    {
-//    QSqlRecord record = qry.record();
-//    count = qry.value(record.indexOf("user_count")).toInt();
-//    }
-
-//    return count;
-//}
 
 bool DBInterface::checkBoxUsage(QString sdb)
 {
@@ -194,19 +171,6 @@ QString DBInterface::getUserID(QString name)
     return userID;
 }
 
-//void DBInterface::incUserCount(QString sdb)
-//{
-//    QSqlQuery qry;
-//    qry.exec("UPDATE safedb SET user_count = (user_count + 1) WHERE post_id = '" + sdb + "';");
-//}
-
-//void DBInterface::decUserCount(QString sdb)
-//{
-//    QSqlQuery qry;
-//    qry.exec("UPDATE safedb SET user_count = (user_count - 1) WHERE post_id = '" + sdb + "';");
-//    // husk at kalde med .mid(17,2)
-//}
-
 void DBInterface::deletePrivilege(QString name, QString sdb)
 {
     QSqlQuery qry;
@@ -221,13 +185,3 @@ void DBInterface::deleteUser(QString name)
     qry.exec("DELETE FROM privileges WHERE userID = '" + getUserID(name) + "';");
     qry.exec("DELETE FROM users WHERE userID = '" + getUserID(name) + "';");
 }
-
-//void DBInterface::resetSDB()
-//{
-//    QSqlQuery qry;
-//    for(int i = 1; i <= 20; i++)
-//        qry.exec("UPDATE safedb SET user_count = '0' WHERE post_id = '" + QString::number(i) + "';");
-
-//    for(int i = 1; qry.next(); i++)
-//        qry.exec("DROP TABLE " + getUserID(i) + ";");
-//}

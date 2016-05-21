@@ -19,7 +19,7 @@ public:
     static void resetTimer();
     static void stopTimer();
 
-public slots:
+private slots:
     static void showLogin();
 
 private:

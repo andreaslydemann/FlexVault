@@ -33,21 +33,21 @@ static const uint qt_meta_data_UserConfiguration[] = {
       19,   18,   18,   18, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      46,   18,   18,   18, 0x0a,
-      60,   18,   18,   18, 0x08,
-      86,   18,   18,   18, 0x08,
-     116,   18,   18,   18, 0x08,
-     142,   18,   18,   18, 0x08,
+      46,   18,   18,   18, 0x08,
+      72,   18,   18,   18, 0x08,
+     102,   18,   18,   18, 0x08,
+     128,   18,   18,   18, 0x08,
+     152,   18,   18,   18, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_UserConfiguration[] = {
     "UserConfiguration\0\0privilegesButton_clicked()\0"
-    "updateUConf()\0on_createButton_clicked()\0"
+    "on_createButton_clicked()\0"
     "on_privilegesButton_clicked()\0"
     "on_deleteButton_clicked()\0"
-    "on_backButton_clicked()\0"
+    "on_backButton_clicked()\0updateUConf()\0"
 };
 
 void UserConfiguration::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -57,11 +57,11 @@ void UserConfiguration::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         UserConfiguration *_t = static_cast<UserConfiguration *>(_o);
         switch (_id) {
         case 0: _t->privilegesButton_clicked(); break;
-        case 1: _t->updateUConf(); break;
-        case 2: _t->on_createButton_clicked(); break;
-        case 3: _t->on_privilegesButton_clicked(); break;
-        case 4: _t->on_deleteButton_clicked(); break;
-        case 5: _t->on_backButton_clicked(); break;
+        case 1: _t->on_createButton_clicked(); break;
+        case 2: _t->on_privilegesButton_clicked(); break;
+        case 3: _t->on_deleteButton_clicked(); break;
+        case 4: _t->on_backButton_clicked(); break;
+        case 5: _t->updateUConf(); break;
         default: ;
         }
     }

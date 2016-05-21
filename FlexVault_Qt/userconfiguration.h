@@ -25,17 +25,12 @@ public:
     explicit UserConfiguration(QWidget *parent = 0);
     ~UserConfiguration();
 
-public slots:
-    void updateUConf();
-
 private slots:
     void on_createButton_clicked();
-
     void on_privilegesButton_clicked();
-
     void on_deleteButton_clicked();
-
     void on_backButton_clicked();
+    void updateUConf();
 
 private:
     Ui::UserConfiguration *ui;

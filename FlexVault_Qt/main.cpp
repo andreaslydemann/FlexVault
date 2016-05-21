@@ -8,19 +8,19 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication fv(argc, argv);
+    fv.setQuitOnLastWindowClosed(false);
 
     InactivityFilter filter;
-    a.installEventFilter(&filter);
+    fv.installEventFilter(&filter);
 
     QSqlDatabase* fv_db = new QSqlDatabase; // allocate QSqlDatabase object
     DBInterface dbi;
     dbi.connectToDb(*fv_db);
 
     Login login(0);
-    login.move(0, 0);
-    login.showFullScreen(); // change to showFullScreen() for BeagleBone
+    login.showFullScreen();
 
-    return a.exec();
+    return fv.exec();
 }
 

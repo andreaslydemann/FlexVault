@@ -34,8 +34,8 @@ static const uint qt_meta_data_Login[] = {
       29,    6,    6,    6, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      50,    6,    6,    6, 0x0a,
-      75,    6,    6,    6, 0x0a,
+      50,    6,    6,    6, 0x08,
+      75,    6,    6,    6, 0x08,
 
        0        // eod
 };
