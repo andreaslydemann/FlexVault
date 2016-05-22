@@ -14,6 +14,7 @@ BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QS
 {
     ui->setupUi(this);
 
+    ui->returnButton->setEnabled(false);
     ui->msgLabel->setWordWrap(true);
 
     prevPage = prevPage_;
@@ -24,6 +25,11 @@ BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QS
 
     unsigned int cmd = 32;
     spi->writeToFV(&box_, &cmd);
+
+    while(readFromFV() != 0x0F);
+
+    ui->returnButton->setEnabled(true);
+
 }
 
 BoxRetrieval::~BoxRetrieval()
