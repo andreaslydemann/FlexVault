@@ -29,7 +29,7 @@
   <widget class="QLabel" name="msgLabel">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>110</x>
      <y>40</y>
      <width>271</width>
      <height>51</height>

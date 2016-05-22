@@ -76,8 +76,9 @@ bool Login::eventFilter(QObject* object, QEvent* event)
 {
     if((object == ui->idLineEdit || object == ui->passwordLineEdit) && event->type() == QEvent::MouseButtonPress) {
         ui->virtualKeyboard->show();
-        return false;
+        return true;
     }
+
     return false;
 }
 

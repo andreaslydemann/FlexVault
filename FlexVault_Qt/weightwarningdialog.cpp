@@ -9,10 +9,10 @@ WeightWarningDialog::WeightWarningDialog(QWidget *parent) :
 {
     QWidget::setWindowFlags( Qt::CustomizeWindowHint );
     ui->setupUi(this);
+    this->setWindowTitle("WeightWarningDialog");
     ui->msgLabel->setWordWrap(true);
 
     timer->setSingleShot(true);
-
     connect(timer, SIGNAL(timeout()), this, SLOT(closeDialog()));
     timer->start(4000);
 }

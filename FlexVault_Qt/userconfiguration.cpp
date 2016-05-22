@@ -35,12 +35,9 @@ void UserConfiguration::updateUConf()
     // Erase list
     int count = ui->userListWidget->count();
     for (int i = 0; i<count; i++)
-    {
-        int a = 0;
-        ui->userListWidget->takeItem(a);
-        a++;
-    }
-    //create list
+        ui->userListWidget->takeItem(0);
+
+    // Create list
     int arraySize;
     userItems = dbi.getColumnAsItems("users", "name", arraySize);
     for (int i = 0; i<arraySize; i++)

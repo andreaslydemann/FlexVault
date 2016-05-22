@@ -6,6 +6,8 @@ LoginFailedDialog::LoginFailedDialog(QWidget *parent) :
     ui(new Ui::LoginFailedDialog)
 {
     ui->setupUi(this);
+
+    this->setWindowTitle("LoginFailedDialog");
     ui->msgLabel->setWordWrap(true);
 }
 

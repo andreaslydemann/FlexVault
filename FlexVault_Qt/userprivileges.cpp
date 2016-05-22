@@ -25,19 +25,8 @@ UserPrivileges::~UserPrivileges()
 void UserPrivileges::updateUPriv()
 {
     QListWidgetItem * sdbItems;
-
-    // Erase list
-    int count = ui->sdbListWidget->count();
-
-    for (int i = 0; i<count; i++)
-    {
-        int a = 0;
-        ui->sdbListWidget->takeItem(a);
-        a++;
-    }
-
-    //create list
     int arraySize;
+
     sdbItems = dbi.getUserPrivileges(user, arraySize);
     for (int i = 0; i<arraySize; i++)
         ui->sdbListWidget->addItem(&sdbItems[i]);

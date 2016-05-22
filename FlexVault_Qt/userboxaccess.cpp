@@ -30,20 +30,9 @@ void UserBoxAccess::on_logOutButton_clicked()
 
 void UserBoxAccess::update()
 {
-    QListWidgetItem * sdbItems;
+    QListWidgetItem * sdbItems = NULL;
+    int arraySize = 0;
 
-    // Erase list
-    int count = ui->boxListWidget->count();
-
-    for (int i = 0; i<count; i++)
-    {
-        int a = 0;
-        ui->boxListWidget->takeItem(a);
-        a++;
-    }
-
-    //create list
-    int arraySize;
     sdbItems = dbi.getUserPrivileges(user, arraySize);
     for (int i = 0; i<arraySize; i++)
         ui->boxListWidget->addItem(&sdbItems[i]);

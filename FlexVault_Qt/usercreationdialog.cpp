@@ -78,9 +78,9 @@ void UserCreationDialog::lineEdit_textChanged()
 bool UserCreationDialog::eventFilter(QObject* object, QEvent* event)
 {
     if((object == ui->userIDLineEdit || object == ui->passwordLineEdit) && event->type() == QEvent::MouseButtonPress) {
-        // bring up your custom edit
         ui->virtualKeyboard->show();
-        return false; // lets the event continue to the edit
+        return true;
     }
+
     return false;
 }

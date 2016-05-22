@@ -36,7 +36,7 @@ public:
         returnButton->setGeometry(QRect(120, 140, 241, 101));
         msgLabel = new QLabel(BoxRetrieval);
         msgLabel->setObjectName(QString::fromUtf8("msgLabel"));
-        msgLabel->setGeometry(QRect(90, 40, 271, 51));
+        msgLabel->setGeometry(QRect(110, 40, 271, 51));
 
         retranslateUi(BoxRetrieval);
 

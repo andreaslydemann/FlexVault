@@ -59,7 +59,6 @@ void DBInterface::writeUserToDb(QString name, QString password)
 {
     QSqlQuery qry;
     qry.exec("insert into users(name, password) values('" + name + "','" + password + "')");
-    //qry.exec("insert into userlist(userID, password) values('" + userID + "','" + password + "')");
 }
 
 void DBInterface::connectToDb(QSqlDatabase &fv_db)
@@ -68,8 +67,8 @@ void DBInterface::connectToDb(QSqlDatabase &fv_db)
     fv_db = QSqlDatabase::addDatabase("QSQLITE"); //use SQLite
 
     //set path
-    //fv_db.setDatabaseName("/home/stud/FV/FlexVault/FlexVault_Qt/fv.db");
-    fv_db.setDatabaseName("/home/root/fv.db");
+    fv_db.setDatabaseName("/home/stud/FV/FlexVault/FlexVault_Qt/fv.db");
+    //fv_db.setDatabaseName("/home/root/fv.db");
 
     if (!fv_db.open())
     {
@@ -92,8 +91,6 @@ void DBInterface::assignPrivileges(QString name, QString sdb)
 {
     QSqlQuery qry;
     qry.exec("insert into privileges(userID, boxID) values('" + getUserID(name) + "','" + sdb + "');");
-
-    //qry.exec("insert into " + name + "(box_access) values(" + sdb + ");");
 }
 
 bool DBInterface::checkBoxUsage(QString sdb)
