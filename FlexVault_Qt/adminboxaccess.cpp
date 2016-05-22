@@ -22,7 +22,6 @@ void AdminBoxAccess::on_retrieveButton_clicked()
 {
     boxret = new BoxRetrieval(0, "aba", "Admin", ui->boxListWidget->currentItem()->text().mid(17,2));
     boxret->showFullScreen();
-
     this->close();
 }
 
