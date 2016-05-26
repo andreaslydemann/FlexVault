@@ -1,5 +1,7 @@
 #include "spiinterface.h"
 
+
+
 int SPIInterface::writeToFV(QString* sdb, unsigned int* cmd)
 {
     unsigned int data = sdb->toInt();
@@ -7,7 +9,7 @@ int SPIInterface::writeToFV(QString* sdb, unsigned int* cmd)
     unsigned int value = 0;
     char txBuf[6];
 
-    qDebug() << "writing";
+    qDebug() << "writing...";
 
     fp = open("/dev/spidev0", O_RDWR);
 
@@ -76,28 +78,26 @@ int SPIInterface::readFromFV()
 bool SPIInterface::checkWeight()
 {
     QString empty = "";
-    unsigned int cmd = 96;
+    unsigned int cmd = ReadWeight;
     writeToFV(&empty, &cmd);
-    int msg = readFromFV();
-    qDebug() << "Received Value" + msg;
-    qDebug()<<  "weight=" << (msg<<1) << " gram(s)";
-    if((msg<<1) >= 400)
-        return true;
+
+    if((readFromFV() << 1) >= 400)
+        return false;
 
     else
-        return false;
+        return true;
 }
 
 void SPIInterface::retrieveSDB(QString sdb)
 {
-    unsigned int cmd = 32;
+    unsigned int cmd = Retrieve;
 
     writeToFV(&sdb, &cmd);
 }
 
 void SPIInterface::returnSDB(QString sdb)
 {
-    unsigned int cmd = 64;
+    unsigned int cmd = Return;
 
     writeToFV(&sdb, &cmd);
 }

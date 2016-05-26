@@ -2,6 +2,7 @@
 #include "ui_adminboxaccess.h"
 #include "adminmainmenu.h"
 #include "boxretrieval.h"
+#include "spiinterface.h"
 
 AdminBoxAccess::AdminBoxAccess(QWidget *parent) :
     QWidget(parent),
@@ -20,9 +21,12 @@ AdminBoxAccess::~AdminBoxAccess()
 
 void AdminBoxAccess::on_retrieveButton_clicked()
 {
-    boxret = new BoxRetrieval(0, "aba", "Admin", ui->boxListWidget->currentItem()->text().mid(17,2));
-    boxret->showFullScreen();
-    this->close();
+    if(spi->checkStatus)
+    {
+        boxret = new BoxRetrieval(0, "aba", "Admin", ui->boxListWidget->currentItem()->text().mid(17,2));
+        boxret->showFullScreen();
+        this->close();
+    }
 }
 
 void AdminBoxAccess::on_backButton_clicked()

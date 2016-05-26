@@ -3,6 +3,7 @@
 #include "boxretrieval.h"
 #include "activitylog.h"
 #include "login.h"
+#include "spiinterface.h"
 
 UserBoxAccess::UserBoxAccess(QWidget *parent, QString user_) :
     QWidget(parent),
@@ -30,9 +31,20 @@ void UserBoxAccess::on_logOutButton_clicked()
 
 void UserBoxAccess::update()
 {
-    QListWidgetItem * sdbItems = NULL;
-    int arraySize = 0;
+    QListWidgetItem * sdbItems;
 
+    // Erase list
+    int count = ui->boxListWidget->count();
+
+    for (int i = 0; i<count; i++)
+    {
+        int a = 0;
+        ui->boxListWidget->takeItem(a);
+        a++;
+    }
+
+    //create list
+    int arraySize;
     sdbItems = dbi.getUserPrivileges(user, arraySize);
     for (int i = 0; i<arraySize; i++)
         ui->boxListWidget->addItem(&sdbItems[i]);
@@ -43,8 +55,11 @@ void UserBoxAccess::update()
 
 void UserBoxAccess::on_retrieveButton_clicked()
 {
-    boxret = new BoxRetrieval(0, "uba", user, ui->boxListWidget->currentItem()->text());
-    boxret->showFullScreen();
 
-    this->close();
+    if(spi->checkStatus)
+    {
+        boxret = new BoxRetrieval(0, "uba", user, ui->boxListWidget->currentItem()->text());
+        boxret->showFullScreen();
+        this->close();
+    }
 }
