@@ -1,4 +1,5 @@
 #include "inactivityfilter.h"
+#include "activitylog.h"
 
 QTimer* InactivityFilter::timer = new QTimer;
 bool InactivityFilter::timerStopped = false;
@@ -34,6 +35,7 @@ void InactivityFilter::stopTimer()
 
 void InactivityFilter::showLogin()
 {
+    log->write("", "Auto_log_out");
     qApp->quit();
     QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
 }

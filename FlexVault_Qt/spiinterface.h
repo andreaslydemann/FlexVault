@@ -7,6 +7,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#define Retrieve 32
+#define Return 64
+#define ReadWeight 96
+
 class SPIInterface
 {
 public:
@@ -15,6 +19,7 @@ public:
     bool checkWeight();
     void returnSDB(QString);
     void retrieveSDB(QString);
+    bool checkStatus();
 };
 
 #endif // SPIINTERFACE_H

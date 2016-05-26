@@ -7,6 +7,7 @@
 class Login;
 class ActivityLog;
 class BoxRetrieval;
+class SPIInterface;
 
 namespace Ui {
 class UserBoxAccess;
@@ -31,6 +32,7 @@ private:
     Login* login;
     QString user;
     BoxRetrieval* boxret;
+    SPIInterface* spi;
     DBInterface dbi;
 };
 

@@ -21,7 +21,7 @@ AdminBoxAccess::~AdminBoxAccess()
 
 void AdminBoxAccess::on_retrieveButton_clicked()
 {
-    if(spi->checkStatus)
+    //if(spi->checkStatus())
     {
         boxret = new BoxRetrieval(0, "aba", "Admin", ui->boxListWidget->currentItem()->text().mid(17,2));
         boxret->showFullScreen();

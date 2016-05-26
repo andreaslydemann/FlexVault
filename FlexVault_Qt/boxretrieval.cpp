@@ -26,10 +26,9 @@ BoxRetrieval::BoxRetrieval(QWidget *parent, QString prevPage_, QString user_, QS
     unsigned int cmd = 32;
     spi->writeToFV(&box_, &cmd);
 
-    while(readFromFV() != 0x0F);
+    //while(spi->readFromFV() != 0x0F);
 
     ui->returnButton->setEnabled(true);
-
 }
 
 BoxRetrieval::~BoxRetrieval()

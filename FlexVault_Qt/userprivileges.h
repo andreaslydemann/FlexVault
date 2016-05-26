@@ -8,6 +8,7 @@ class AddUserPrivileges;
 class UserConfiguration;
 class BoxRetrieval;
 class ActivityLog;
+class SPIInterface;
 
 namespace Ui {
 class UserPrivileges;
@@ -33,6 +34,7 @@ private:
     AddUserPrivileges* addUP;
     UserConfiguration* uconf;
     BoxRetrieval* boxret;
+    SPIInterface* spi;
     ActivityLog* log;
     DBInterface dbi;
     QString user;

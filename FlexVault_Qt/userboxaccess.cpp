@@ -55,8 +55,7 @@ void UserBoxAccess::update()
 
 void UserBoxAccess::on_retrieveButton_clicked()
 {
-
-    if(spi->checkStatus)
+    if(spi->checkStatus())
     {
         boxret = new BoxRetrieval(0, "uba", user, ui->boxListWidget->currentItem()->text());
         boxret->showFullScreen();

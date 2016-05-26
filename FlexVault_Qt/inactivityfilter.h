@@ -5,6 +5,8 @@
 #include <QTimer>
 #include "login.h"
 
+class ActivityLog;
+
 namespace Ui {
 class InactivityFilter;
 }
@@ -26,6 +28,7 @@ private:
 static QTimer *timer;
 static bool timerStopped;
 Login* login;
+ActivityLog* log;
 };
 
 #endif // INACTIVITYFILTER

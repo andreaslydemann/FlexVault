@@ -5,6 +5,7 @@
 
 class AdminMainMenu;
 class BoxRetrieval;
+class SPIInterface;
 
 namespace Ui {
 class AdminBoxAccess;
@@ -26,6 +27,7 @@ private:
     Ui::AdminBoxAccess *ui;
     AdminMainMenu* amm;
     BoxRetrieval* boxret;
+    SPIInterface* spi;
 };
 
 #endif // ADMINBOXACCESS_H
